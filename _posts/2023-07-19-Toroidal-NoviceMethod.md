@@ -20,7 +20,7 @@ The basic beginner's strategy is to solve the Top Left Corner (TLC) first, and t
 
 In the diagram below, we have a 3x3 Toroidal scrambled on the left, the same 3x3 Toroidal with the 2x2 TLC solved in the middle, and then the whole Toroidal solved on the right.  While the diagram has these stages side by side, it takes several moves (not shown) to progress from one to the next.
 
-![A scrambled 3x3 Toroidal](/TImages/Stars3x3_Scrambled.png) &rarr;
+![A scrambled 3x3 Toroidal](/TImages/Stars3x3_scrambled.png) &rarr;
 ![The top left corner solved](/TImages/Stars3x3_TLC_done.png) &rarr;
 ![The completely solved Toroidal](/TImages/Stars3x3.png)
 

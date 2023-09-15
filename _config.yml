@@ -26,7 +26,7 @@ email: m.c.horsch@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
     Pushing squares.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://m-horsch.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: MCHorsch
 github_username:  m-horsch
 toroidal_url: "https://biffproj.000webhostapp.com/Toroidal.html"

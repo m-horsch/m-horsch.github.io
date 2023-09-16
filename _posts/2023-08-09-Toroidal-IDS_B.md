@@ -23,7 +23,7 @@ table
 **Some sequences are not worth looking at.**
 In [a previous posting]({% post_url 2023-08-02-Toroidal-IDS_A %}), I described a simplistic version of Iterative Deepening Search (IDS), which explored all possible move sequences, starting with length 1, then length 2, etc.  This is a very simple algorithm to build, and it is guaranteed not to miss a solution, provided you give it enough time.
 
-The problem with this simplistic approach is that it looks at far too many sequences, most especially, sequences that are totally pointless, like "L1 R1 L1 R1"; this sequence pushes row 1 back and forth, making no progress at all.  It also considers "L1 L2" to be a different sequence than "L2 L1" even though the two have identical effects on a Toroidal.  Even if "L1 L2" is useful, it is inefficient to look at it again as "L2 L1."  Because the simplistic IDS spends time looking at all the useless sequences, it can take a long time to find solutions to relatively simple Toroidal puzzles.
+The problem with this simplistic approach is that it looks at far too many sequences, most especially, sequences that are totally pointless, like `L1 R1 L1 R1`; this sequence pushes row 1 back and forth, making no progress at all.  It also considers `L1 L2` to be a different sequence than `L2 L1` even though the two have identical effects on a Toroidal.  Even if `L1 L2` is useful, it is inefficient to look at it again as `L2 L1.`  Because the simplistic IDS spends time looking at all the useless sequences, it can take a long time to find solutions to relatively simple Toroidal puzzles.
 
 In this posting I will describe, somewhat vaguely, a more sophisticated version of IDS, which avoids the great majority of the useless moves that the simplistic one explored.  Then I will demonstrate the value of this technique, by showing how much faster it is.
 
@@ -33,9 +33,9 @@ Briefly, avoiding useless sequences can be accomplished by a simple principle.
 > If two sequences have the same effect, and they are the same length, choose one of them, and prevent the other.  
 
 Admittedly, my description is a bit vague.  I will describe the theory behind it in a separate posting.  I didn't want this one to be too long.  But I will provide examples to give the basic idea.
-1. Useless sequences like "L1 R1" are prevented, because it's equivalent to a sequence with zero moves.
-2. In a 3x3 Toroidal, the sequence "L1 L1" is equivalent to the single action "R1".  So we will allow "R1" to be tried, and "L1 L1" will be prevented.
-3. In a 4x4 Toroidal,  "L1 L1" and "R1 R1" have the same effect; we arbitrarily allow the first sequence, and prevent the second.  
+1. Useless sequences like `L1 R1` are prevented, because it's equivalent to a sequence with zero moves.
+2. In a 3x3 Toroidal, the sequence `L1 L1` is equivalent to the single action `R1`.  So we will allow `R1` to be tried, and `L1 L1` will be prevented.
+3. In a 4x4 Toroidal,  `L1 L1` and `R1 R1` have the same effect; we arbitrarily allow the first sequence, and prevent the second.  
 
 With just this one principle, we can eliminate the vast majority of useless moves.  This principle can be encoded in the part of the program that proposes new moves to add to a sequence.  It is far faster to generate only the good moves than it is to generate all moves, and then delete the ones you don't want.  
 

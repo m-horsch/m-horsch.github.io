@@ -54,7 +54,7 @@ The data in the columns labelled **Plain IDS** and **Enhanced IDS** are average 
 
 The combination of multiple hikers, a prioritization scheme, and a penalty on length, is pretty effective for 3x3 Toroidals.  Surely this problem can be considered "solved." 
 
-**Not so fast.**  I applied this heuristic technique to 4x4 Toroidals.  I mentioned in the previous posting that IDS couldn't solve any of them in a time limit of 60 seconds, even if all the useless sequences are prevented.  Well, A\* cannot solve any of them either.  At least, not yet.  The problem is that 4x4 is not just a little bigger than 3x3.  It's a lot bigger.  
+**Not so fast.**  I applied this heuristic technique to 4x4 Toroidals.  I mentioned in the previous posting that IDS couldn't solve any of them in a time limit of 60 seconds, even if all the useless sequences are prevented.  Well, A\* cannot solve any of them either.  At least, not yet.  The problem is that 4x4 is not just a little bigger than 3x3.  It's a lot bigger.  The first thing we'll try is a better heuristic, which will focus even more on the promising arrangements.  Surprisingly, it will help a little.  
 
-The first thing we'll try is a better heuristic, which will focus even more on the promising arrangements.  Surprisingly, it will help a little.  
+**Almost as good.**  While IDS took a long time, it is guaranteed to find the shortest possible sequence of moves to solve a Toroidal.  And it is possible for A\* to have such a guarantee, but counting the number of misplaced tiles cannot provide such a guarantee.  The reason is somewhat technical, but it boils down to being a bit too optimistic.  Most of the solutions found by our prioritization scheme are optimal, but a few are one or 2 moves longer than what IDS would find.  For some purposes, a pretty good solution very quickly might be more valuable than the best solution a long time later.  We'll explore this a bit more as well.
 

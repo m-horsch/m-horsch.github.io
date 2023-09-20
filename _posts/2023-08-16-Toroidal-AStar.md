@@ -44,24 +44,17 @@ This strategy advances a number of promising hikers forward, leaving the hikers 
 
 | Solution length | Plain IDS | Enhanced IDS | A\*  |
 |:-:|--:|--:|--:|
-| 4 |     0.47 |   0.101 |   0.001 |
-| 5 |     4.20 |   0.631 |   0.004 |
-| 6 |    38.90 |   3.710 |   0.012 |
-| 7 |   *400*   |  20.900 |  0.023   |
-| 8 |   *4000*  | 126.700 |  0.066   |
+| 4 |     0.47  |   0.101 |   0.001 |
+| 5 |     4.20  |   0.631 |   0.004 |
+| 6 |    38.90  |   3.710 |   0.012 |
+| 7 |   *400*   |  20.900 |  0.023  |
+| 8 |   *4000*  | 126.700 |  0.066  |
 
 The data in the columns labelled **Plain IDS** and **Enhanced IDS** are average times to find a solution of the given length, copied from the previous postings (italics represent estimated times).  The new column is also an average time in seconds, and shows that A\* can solve 3x3 Toroidals in tiny fractions of a second.  On average, this heuristic strategy is more than 500 times faster than the **Enhanced IDS** strategy.  
 
 The combination of multiple hikers, a prioritization scheme, and a penalty on length, is pretty effective for 3x3 Toroidals.  Surely this problem can be considered "solved." 
 
 **Not so fast.**  I applied this heuristic technique to 4x4 Toroidals.  I mentioned in the previous posting that IDS couldn't solve any of them in a time limit of 60 seconds, even if all the useless sequences are prevented.  Well, A\* cannot solve any of them either.  At least, not yet.  The problem is that 4x4 is not just a little bigger than 3x3.  It's a lot bigger.  
-
-For 3x3, there are 12 possible moves, and every problem can be solved in 8 moves or less.  
-If we allow the useless moves, there are $$\small 12^{8}$$ possible sequences of length 8, about 430 million.  By preventing useless moves, we can reduce the number of possible moves from 12 to about 8 on average, giving us $$8^8$$ possible moves, or about 17 million sequences of length 8.
-
-For 4x4, there are 16 possible moves, and every solution can be solved in something like 20 moves (I have not proved this number; it's a very rough guess). 
-If we do not prevent useless sequences, there are $$\small 16^{20}$$ possible move sequences, or roughly 1.2 million million million million sequences.
-If we prevent useless sequences in 4x4 Toroidals, we can reduce the number of possible moves from 16 down to about 12, giving us about $$\small 12^{20}$$ sequences, or only 3.8 thousand million million million moves.  This is a 300-fold improvement, but 300 fold improvements can't put a dent in the size of this problem.
 
 The first thing we'll try is a better heuristic, which will focus even more on the promising arrangements.  Surprisingly, it will help a little.  
 

@@ -52,7 +52,7 @@ This strategy advances a number of promising hikers forward, leaving the hikers 
 | 7 |   *400*   |  20.900 |  0.023  |
 | 8 |   *4000*  | 126.700 |  0.066  |
 
-The data in the columns labelled **Plain IDS** and **Enhanced IDS** are average times to find a solution of the given length, copied from the previous postings (italics represent estimated times).  The new column labelled **A\* ** is also an average time in seconds, and shows that A\* can solve 3x3 Toroidals in tiny fractions of a second.  On average, this heuristic strategy is more than 500 times faster than the **Enhanced IDS** strategy.  
+The data in the columns labelled **Plain IDS** and **Enhanced IDS** are average times to find a solution of the given length, copied from the previous postings (italics represent estimated times).  The new column labelled <strong>A\*</strong> is also an average time in seconds, and shows that A\* can solve 3x3 Toroidals in tiny fractions of a second.  On average, this heuristic strategy is more than 500 times faster than the **Enhanced IDS** strategy.  
 
 The combination of multiple hikers, a prioritization scheme, and a penalty on length, is pretty effective for 3x3 Toroidals.  Surely this problem can be considered "solved." 
 

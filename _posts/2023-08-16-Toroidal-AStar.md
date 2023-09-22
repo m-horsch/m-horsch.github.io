@@ -30,7 +30,7 @@ The easiest way to measure the effect of a sequence of moves is to *count the nu
 Looking at it this way, a solution is a path through this mountain range, from some initial location, down to the lowest point, which is the solved Toroidal.  Why can't we just write a program to simulate a hiker that just walks downhill? 
 Like real world mountain ranges, the Toroidal Mountain range has peaks, hills, ridges, flat meadows, and valleys.  If you're on a peak, every direction is downhill, but some of these downhill steps do not get you closer to your goal.  For some places in the mountain range, there is no way to move downhill.  You could step onto a large flat meadow where every step is at the same level, or in a basin where every move takes you uphill again.  Real mountain ranges are like this, and the Toroidal range is like this as well.
 
-![A landscape painted by Stable Diffusion, using text chosen from the above paragraph.] ](/TImages/ToroidalMountains.png){:width="60%"}
+![A landscape painted by Stable Diffusion, using text chosen from the above paragraph.](/TImages/ToroidalMountains.png){:width="60%"}
 
 Even if we gave the hiker a map of the Toroidal Mountain range, it wouldn't get them very far because the Toroidal Mountains are not exactly like real mountain ranges.  They are more like a complex game of snakes and ladders; snakes move you downhill, and ladders take you uphill.  Furthermore, in the Toroidal Mountains, when you take a step, you don't know whether you're going to step on a snake or a ladder.  In the Toroidal Mountains, one step can take you very far away from the other steps you could have taken.  A map for a real world place gives you some clues about how to get to where you want to go.  A map of the Toroidal Mountains is as much a puzzle as the Toroidal puzzle it represents!  
 
@@ -52,7 +52,7 @@ This strategy advances a number of promising hikers forward, leaving the hikers 
 | 7 |   *400*   |  20.900 |  0.023  |
 | 8 |   *4000*  | 126.700 |  0.066  |
 
-The data in the columns labelled **Plain IDS** and **Enhanced IDS** are average times to find a solution of the given length, copied from the previous postings (italics represent estimated times).  The new column is also an average time in seconds, and shows that A\* can solve 3x3 Toroidals in tiny fractions of a second.  On average, this heuristic strategy is more than 500 times faster than the **Enhanced IDS** strategy.  
+The data in the columns labelled **Plain IDS** and **Enhanced IDS** are average times to find a solution of the given length, copied from the previous postings (italics represent estimated times).  The new column labelled **A\* ** is also an average time in seconds, and shows that A\* can solve 3x3 Toroidals in tiny fractions of a second.  On average, this heuristic strategy is more than 500 times faster than the **Enhanced IDS** strategy.  
 
 The combination of multiple hikers, a prioritization scheme, and a penalty on length, is pretty effective for 3x3 Toroidals.  Surely this problem can be considered "solved." 
 

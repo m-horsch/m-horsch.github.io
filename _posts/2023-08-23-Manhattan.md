@@ -17,9 +17,14 @@ table
 Previously, I wrote about 
 [using heuristics to prioritize promising sequences]({% post_url 2023-08-16-Toroidal-AStar %}). The approach was able to solve 3x3 Toroidals in a few tens of milliseconds.  The posting ended with a claim that the prioritization scheme was unable to solve 4x4 Toroidals given a full 60 seconds to try.  I later applied A\* MTC to 4x4 Toroidals, giving the algorithm 5 minutes to try each example.  It was able to solve a few of these, but only those whose solutions were at depth 14.  I halted this experiment before it tried all 100 examples, because 5 minutes per failure is 8 hours of failure.
 
-There are two compounding factors that change when we proceed from 3x3 to 4x4.  First, the number of possible single moves increases from 12 in the 3x3 case, to 16 in the 4x4 case.  The Enhanced IDS can prevent a lot of useless sequences, so the number of possibly useful moves can be reduced from 16 to something like 12 (rough guess) in the 4x4 case.  Secondly, because there are more tiles to put into place, the maximum number of moves needed to solve a Toroidal increases from 8 (known fact for 3x3) to something like 20 (rough guess for 4x4).  
+*A small increase creates a formidable challenge.* There are two compounding factors that change when we proceed from 3x3 to 4x4.  First, the number of possible single moves increases from 12 in the 3x3 case, to 16 in the 4x4 case.
+The Enhanced IDS can prevent a lot of useless sequences, so the number of possibly useful moves can be reduced from 16 to something like 12 (rough guess) in the 4x4 case.
+Secondly, because there are more tiles to put into place, the maximum number of moves needed to solve a Toroidal increases from 8 (known fact for 3x3) to something like 20 (rough guess for 4x4).  
 
-The result creates a formidable challenge.  If we're using Simple IDS, the number of sequences for 3x3 Toroidals is $$\small 12^{8}$$, or roughly 430 million, which is a number in the range of human experience; it's larger than the population of the USA, but smaller than the total population of Europe (2023 data).  However, the number of sequences for 4x4 Toroidals is beyond human experience: $$\small 16^{20}$$, or roughly 1.2 million million million million sequences.   Roughly, the population of 151 million million Earths.  Even if we use Enhanced IDS, preventing useless sequences, the number of sequences to explore is on the order of $$\small 12^{20}$$ which is about the population of 500 thousand million Earths.  IDS is totally infeasible for 4x4 Toroidals, and larger.
+These two factors make solving 4x4 Toroidals very challenging.  
+If we're using Simple IDS, the number of sequences for 3x3 Toroidals is $$\small 12^{8}$$, or roughly 430 million, which is a number in the range of human experience; it's larger than the population of the USA, but smaller than the total population of Europe (2023 data).  However, the number of sequences for 4x4 Toroidals is beyond human experience: $$\small 16^{20}$$, or roughly 1.2 million million million million sequences.  That's roughly the population of 151 million million Earths.  That's still too big to think about.  If every one of the estimated 50 million habitable planets in the Milky Way had Earth's population, we'd be talking about 3 million Milky Ways.  
+
+Even if we use Enhanced IDS, preventing useless sequences, the number of sequences to explore is on the order of $$\small 12^{20}$$ which is about the population of 500 thousand million Earths, or 10 thousand Milky Ways.  IDS is totally infeasible for 4x4 Toroidals, and larger.
 
 |              |    3x3 Sequences  | 3x3 Time | 4x4 Sequences      | 4x4 Estimated Time |
 |:-------------|------------------:|---------:|-------------------:|--------:|
@@ -30,7 +35,9 @@ The result creates a formidable challenge.  If we're using Simple IDS, the numbe
 The table also gives average times from previous experiments 
 ([Simple IDS]({% post_url 2023-08-02-Toroidal-IDS_A %}), 
 [Enhanced IDS]({% post_url 2023-08-09-Toroidal-IDS_B %}), 
-[AStar MTC]({% post_url 2023-08-16-Toroidal-AStar %})).  The times presented in *italics* are estimates.  In the case of Simple IDS on 3x3 Toroidals, I calculated an estimate of the time needed to explore to depth 8, given the successful solutions to shorter depths.  The estimate of 6.3 hours for A\*   MTC on 4x4 Toroidals is a ball-park figure only, based on the limited success described in the opening paragraph above.
+[A\* MTC]({% post_url 2023-08-16-Toroidal-AStar %})).  The times presented in *italics* are estimates.
+In the case of Simple IDS on 3x3 Toroidals, I calculated an estimate of the time needed to explore to depth 8, given the successful solutions to shorter depths.
+The estimate of 6.3 hours for A\*   MTC on 4x4 Toroidals is a ball-park figure only, based on the limited success described in the opening paragraph above.
 
 A simple change in the prioritization scheme can significantly boost A\* performance. In my previous posting, I used the MTC heuristic, which counted misplaced tiles. However, this approach has a weakness, namely that many configurations end up with the same priority, leading to the use of a "first come, first served" tie-breaking rule. This wasn't a big issue for 3x3 Toroidals due to the relatively limited number of configurations. However, for larger ones like 4x4 Toroidals, which have many more configurations with identical priorities using MTC, the problem becomes more pronounced.
 
@@ -69,10 +76,12 @@ We can see that the TMD heuristic improves the 3x3 times, and shows that 4x4 Tor
 
 We have to keep in mind that the solutions found by IDS are always the shortest possible solution, but when we apply A\*, the heuristics I've proposed are not guaranteed to lead to the shortest solution.  In the case of 3x3, A\* is able to find the shortest solution quite often, but not always.  I have every reason to expect that A\* is finding similarly high-quality solutions for 4x4 Toroidals, but since IDS is infeasible, it's hard to do more than guess here. 
 
-**Keep reading.**  The TMD uses *Manhattan distance,* which measures distances in terms of the number of rows and columns in a Toroidal: if two tiles are separated by 2 rows and 3 columns, the Manhattan distance is 2+3=5.  It's named after the kinds of paths one has to take when travelling on roads that are laid out in a grid, like in a big city like Manhattan.  The *Chebyshev distance* is related to the Manhattan distance, but instead of adding the row distance and the column distance together, we take only the larger of the two values.  For example, if two tiles are separated by 2 rows and 3 columns, the Chebyshev distance is 3.
+**Keep reading.**  While doing a little research, I came upon the Wikipedia page for the A\* algorithm.  In that article it mentioned Manhattan distance, since it's a common heuristic for many kinds of problems, but it also a measure I had never come across before, called Chebyshev distance.
+The TMD uses *Manhattan distance,* measuring distances in terms of the number of rows and columns in a Toroidal: if two tiles are separated by 2 rows and 3 columns, the Manhattan distance is 2+3=5.  It's named after the kinds of paths one has to take when travelling on roads that are laid out in a grid, like in a big city like Manhattan.  *Chebyshev distance* is related to the Manhattan distance, but instead of adding the row distance and the column distance together, we take only the larger of the two values.  For example, if two tiles are separated by 2 rows and 3 columns, the Chebyshev distance is 3.
 
 We can use this distance in a heuristic that calculates the total Chebysev distance (TCD) over all tiles that are out of place.  I applied this heuristic to the 3x3 and 4x4 Toroidals, with the results summarized below:
 
+Table: Showing average run times for multiple algorithms (in seconds).
 
 |              |      3x3  |    4x4 |
 |:-------------|----------:|-------:|
@@ -82,7 +91,10 @@ We can use this distance in a heuristic that calculates the total Chebysev dista
 | A\*  TMD     |    0.006s |   2.4s |
 | A\*  TCD     |    0.02s  |  22.2s |
 
+
 The TCD heuristic requires more time than TMD for 3x3 and 4x4 Toroidals, but is still feasible for these problems.  The advantage to TCD is that it finds shorter solutions, on average.  In the table below, I give the average length of solution found by the 5 different algorithms:
+
+Table: Showing average solution length for multiple algorithms (in moves).
 
 |              |    3x3  |   4x4 |
 |:-------------|--------:|------:|

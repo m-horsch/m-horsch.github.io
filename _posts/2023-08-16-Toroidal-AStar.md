@@ -56,7 +56,7 @@ The data in the columns labelled **Simplistic IDS** and **Enhanced IDS** are ave
 
 The combination of multiple hikers, a prioritization scheme, and a penalty on length, is pretty effective for 3x3 Toroidals.  Surely this problem can be considered "solved." 
 
-**Not so fast.**  I applied this heuristic technique to 4x4 Toroidals.  I mentioned in the previous posting that IDS couldn't solve any of them in a time limit of 60 seconds, even if all the useless sequences are prevented.  Well, A\* MTC cannot solve any of them either.  At least, not yin under 60 seconds.  
+**Not so fast.**  I applied this heuristic technique to 4x4 Toroidals.  I mentioned in the previous posting that IDS couldn't solve any of them in a time limit of 60 seconds, even if all the useless sequences are prevented.  Well, A\* MTC cannot solve any of them either.  At least, not in under 60 seconds.  
 
 The problem is that 4x4 is not just a little bigger than 3x3.  It's a lot bigger.  The number of clones created for 3x3 Toroidals is manageable, but starts becoming a problem for 4x4, and larger sizes.  The number of hikers at any time is a measure of how much memory the algorithm needs to solve a Toroidal.  The better a heuristic is, the less memory it will need.  The first thing we'll try is a better heuristic, which will focus even more on the promising arrangements, and to some degree, limit the number of hikers used.  Surprisingly, it will help enough to solve 4x4 Toroidals.
 

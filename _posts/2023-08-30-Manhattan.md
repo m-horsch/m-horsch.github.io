@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Better prioritization"
-date:   2023-08-23
+date:   2023-08-30
 categories:  Solver
 usemathjax: true
 ---
@@ -15,7 +15,7 @@ table
 </style>
 
 Previously, I wrote about 
-[using heuristics to prioritize promising sequences]({% post_url 2023-08-16-AStar %}). The approach was able to solve 3x3 Toroidals in a few tens of milliseconds.  The posting ended with a claim that the prioritization scheme was unable to solve 4x4 Toroidals given a full 60 seconds to try.  I later applied A\* MTC to 4x4 Toroidals, giving the algorithm 5 minutes to try each example.  It was able to solve a few of these, but only those whose solutions were at depth 14.  I halted this experiment before it tried all 100 examples, because 5 minutes per failure is 8 hours of failure.
+[using heuristics to prioritize promising sequences]({% post_url 2023-08-23-AStar %}). The approach was able to solve 3x3 Toroidals in a few tens of milliseconds.  The posting ended with a claim that the prioritization scheme was unable to solve 4x4 Toroidals given a full 60 seconds to try.  I later applied A\* MTC to 4x4 Toroidals, giving the algorithm 5 minutes to try each example.  It was able to solve a few of these, but only those whose solutions were at depth 14.  I halted this experiment before it tried all 100 examples, because 5 minutes per failure is 8 hours of failure.
 
 **First we take Manhattan.** 
 A change in the prioritization scheme can significantly boost A\* performance. In my previous posting, I used the MTC heuristic, which counted misplaced tiles. 

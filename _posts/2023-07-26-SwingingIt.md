@@ -23,7 +23,7 @@ blockquote
 }
 </style>
 
-In a previous posting, I described [a simple approach called TLC that novices can use to solve Toroidal puzzles]({% post_url 2023-07-19-Toroidal-NoviceMethod %}).  It always works, and never gets into a dead-end, though it might result in a high number of moves.   If you want to reduce your move count, you don't have to stick to the TLC too rigidly.  Once you get the hang of moving tiles around, you don’t actually need a dedicated gutter; any tile you haven’t placed into position yet is a “gutter.”  This posting will explain why this idea works.
+In a previous posting, I described [a simple approach called TLC that novices can use to solve Toroidal puzzles]({% post_url 2023-07-19-NoviceMethod %}).  It always works, and never gets into a dead-end, though it might result in a high number of moves.   If you want to reduce your move count, you don't have to stick to the TLC too rigidly.  Once you get the hang of moving tiles around, you don’t actually need a dedicated gutter; any tile you haven’t placed into position yet is a “gutter.”  This posting will explain why this idea works.
 
 ## One basic algorithm to solve Toroidal: Swing
 As I mentioned before, a Toroidal is basically a 2-dimensional Rubik’s cube.  To solve a Rubik’s Cube, there are multiple algorithms that move the cubies around.  There are beginner’s and expert’s algorithms for Rubik's Cube, but they all have a common goal.  Put as many cubies into place as possible, using some clever tricks to avoid moving most of the cubies already in place.  
@@ -48,7 +48,7 @@ The above description uses plain language, which can be a bit clumsy. But with a
 
 <!-- Second, to identify tile locations, we’ll use two numbers in parentheses.  The tile in row 1 and column 1 is at location (1,1).  The tile at row 2 and column 4 is (2,4).  We always write (*row*, *col*). -->
 
-**Example.** We’ll revisit example we saw in that [previous posting]({% post_url 2023-07-19-Toroidal-NoviceMethod %}).  
+**Example.** We’ll revisit example we saw in that [previous posting]({% post_url 2023-07-19-NoviceMethod %}).  
  
 ![A Toroidal with the TLC almost complete](/TImages/Stars3x3_Move_T.png)
 In the graphic on the left, the tiles that belong in the TLC are highlighted, and the tiles that belong in the gutter are darkened.  The tile T is in the gutter, but it should be in the TLC.  It's on the row that we'll be moving, so T is actually in the way. 

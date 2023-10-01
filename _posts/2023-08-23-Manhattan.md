@@ -15,7 +15,7 @@ table
 </style>
 
 Previously, I wrote about 
-[using heuristics to prioritize promising sequences]({% post_url 2023-08-16-Toroidal-AStar %}). The approach was able to solve 3x3 Toroidals in a few tens of milliseconds.  The posting ended with a claim that the prioritization scheme was unable to solve 4x4 Toroidals given a full 60 seconds to try.  I later applied A\* MTC to 4x4 Toroidals, giving the algorithm 5 minutes to try each example.  It was able to solve a few of these, but only those whose solutions were at depth 14.  I halted this experiment before it tried all 100 examples, because 5 minutes per failure is 8 hours of failure.
+[using heuristics to prioritize promising sequences]({% post_url 2023-08-16-AStar %}). The approach was able to solve 3x3 Toroidals in a few tens of milliseconds.  The posting ended with a claim that the prioritization scheme was unable to solve 4x4 Toroidals given a full 60 seconds to try.  I later applied A\* MTC to 4x4 Toroidals, giving the algorithm 5 minutes to try each example.  It was able to solve a few of these, but only those whose solutions were at depth 14.  I halted this experiment before it tried all 100 examples, because 5 minutes per failure is 8 hours of failure.
 
 **First we take Manhattan.** 
 A change in the prioritization scheme can significantly boost A\* performance. In my previous posting, I used the MTC heuristic, which counted misplaced tiles. 
@@ -32,7 +32,7 @@ Consider the 3x3 Toroidal below.
 
 ![A 3x3 Toroidal 4 moves away from solved.](/TImages/Stars3x3_CAB.png)
 
-You may recognize this as being one of the diagrams from [the posting on swing]({% post_url 2023-07-26-Toroidal-SwingingIt %}).  We can confidently say that the solved position is exactly 4 moves away.  
+You may recognize this as being one of the diagrams from [the posting on swing]({% post_url 2023-07-26-SwingingIt %}).  We can confidently say that the solved position is exactly 4 moves away.  
 
 To demonstrate, we'll calculate the Manhattan distances of the three tiles, A, B, C.  Remember that we're not using the normal Toroidal rules for this calculation.  We're pretending that each tile can move independently, without affecting any other tile.
 

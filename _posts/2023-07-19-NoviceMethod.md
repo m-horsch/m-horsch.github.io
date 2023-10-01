@@ -12,7 +12,7 @@ img
 </style>
 ## Brief Introduction 
 
-If you’re new to Toroidal, [you can read a brief introduction]({% post_url 2023-07-12-Toroidal-an-Introduction %}).
+If you’re new to Toroidal, [you can read a brief introduction]({% post_url 2023-07-12-an-Introduction %}).
 In summary, the challenge is to rearrange a rectangular grid of image tiles, to produce an image of some kind.  You can slide tiles left, right, up, or down.  The whole row (or column) moves, and any tile pushed towards the edge of the grid reappears on the opposite side.  Every Toroidal is solvable.  There are never any dead ends; only detours.   Every Toroidal has multiple solutions, some longer, some shorter.  
 
 ## Beginner’s Strategy: TLC

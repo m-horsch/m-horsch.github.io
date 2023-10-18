@@ -34,7 +34,7 @@ All the possible states are represented, and each state has exactly one transiti
 
 ![The 2x2 state space reorganized into a tree structure. ](/TImages/2x2_PathLengthPrunedTree.png)
 
-This organization is called a *tree* in computer science, and it has the property that each state points to at most one other state, though each state may have several states pointing to it.  A tree diagram shows hierarchy, and in this case, it shows common paths from states to the goal state.  And if you're a little confused about the name, yes, computer science typically draws trees upside down.  In this case the goal state is called the *root*, and the branches are below the root.  It's an arbitrary choice, but makes drawing tree-diagrams a little easier: start at the top of the page, and work downwartds as far as you need to go.
+This organization is called a *tree* in computer science, and it has the property that each state points to at most one other state, though each state may have several states pointing to it.  A tree diagram shows hierarchy, and in this case, it shows common paths from states to the goal state.  And if you're a little confused about the name, yes, computer science typically draws trees upside down.  In this case the goal state is called the *root*, and the branches are below the root.  It's an arbitrary choice, but makes drawing tree-diagrams a little easier: start at the top of the page, and work downwards as far as you need to go.
 
 Now, let's remove those labels, and return to a diagram where the states are shown explicitly.
 
@@ -51,7 +51,7 @@ Now, finally, we can reduce this diagram to a form that the computer can use eas
 This is a pictorial form of a computer science tool called a *look-up table.*  Each state appears in the table, and beside each state is the best move to make.  With this look-up table, solving a 2x2 Toroidal is a matter of looking for the state in the table, taking the associated move and applying it to the Toroidal.  In 4 moves or less, the 2x2 Toroidal will be solved.  The whole table easily fits into a computer's memory.
 
 **Running the algorithm.**  I wrote a Toroidal solver using this idea, and applied it to the same set of 3x3 Toroidals we used in previous postings.  The 2x2 case was easy enough to do by hand.  For a computer, it would be trivial.
-For 3x3, it would be nearly impossible to build the look-up table by hand, but possible with a modern computer; it takes a few tens of seconds.  This is a computation that we only need to do once, provided that we can store the look-up table permanently.  I designed the table to store the state of the Toroidal as a string of digits, along with the move that moves to a better state, and then the better state itself.  The first few lines look like this:
+For 3x3, it would be nearly impossible to build the look-up table by hand, but possible with a modern computer; it takes about 15 seconds.  This is a computation that we only need to do once, provided that we can store the look-up table permanently.  I designed the table to store the state of the Toroidal as a string of digits, along with the move that moves to a better state, and then the better state itself.  The first few lines look like this:
 
     012345678 None None
     201345678 L1 012345678
@@ -61,10 +61,10 @@ For 3x3, it would be nearly impossible to build the look-up table by hand, but p
     072315648 U2 012345678
 
 The digits 0 through 8 represent the nine tiles.
-The first line above is the goal state, which has no action and no better state.  The next few lines show states, moves, and the resulting states after the moves.  The table has 181440 lines (because the 3x3 [state space]({% post_url 2023-08-16-StateSpace %}) is split into 2 equal-sized halves), requiring about 4MB of storage.  I designed the solver to open, read, and store this file once, and solve all 100 Toroidals using it.  
+The first line above is the goal state, which has no action and no better state.  The next few lines show states, moves, and the resulting states after the moves.  The table was stored in a file containing 181440 lines (because the 3x3 [state space]({% post_url 2023-08-16-StateSpace %}) is split into 2 equal-sized halves), requiring about 4MB of storage.  I designed the solver to open, read, and store this file once, and solve all 100 Toroidals using it.  
 
-Since every state has exactly one prescribed move, solving any 3x3 Toroidal is very fast.  
-It was able to solve all 100 3x3 Toroidals in an average time of about 0.0001 seconds.  Here's a small table comparing the methods I've applied so far, showing average times for the same set of 100 Toroidals:
+Since every state has exactly one prescribed move, solving any 3x3 Toroidal is very fast.
+It was able to solve all 100 3x3 Toroidals in an average time of about 0.0001 seconds (about one-tenth of a millisecond).  Here's a small table comparing the methods I've applied so far, showing average times for the same set of 100 Toroidals:
 
 |               | 3x3 Average Time  |
 |:--------------|----------:|
@@ -72,10 +72,10 @@ It was able to solve all 100 3x3 Toroidals in an average time of about 0.0001 se
 | Enhanced IDS  |   12.6s   |
 | Look-up Table |   0.0001s  |
 
+It takes some time to build the look-up table, but the evidence shows that once the table is built, solving a 3x3 Toroidal takes almost no time at all.
 
-This solution method was made possible because the distance from each state to the goal state was known.  In this case, I calculated it by hand.  With those distances, it was a simple matter to eliminate redundant transitions, and build a look-up table.
-
-In practice, there is no known way to calculate exact distances in the Toroidal state space without first exploring the state space.  In other words, the only way we know of to calculate those distances is by counting transitions within the state space itself.  The 2x2 case was easy enough to do by hand.  For a computer, it would be trivial.  For 3x3, it would be nearly impossible to do by hand, but easily possible with a modern computer, though it might take a minute or two.  
+This solution method was made possible because the distance from each state to the goal state was known.
+In practice, there is no known way to calculate exact distances in the Toroidal state space without first exploring the state space.  In other words, the only way we know of to calculate those distances is by counting transitions within the state space itself.  WE have to count from every state to the goal state.  The 2x2 case was easy enough to do by hand.  It would be nearly impossible build a look-up table by hand for 3x3 Toroidals, but easily possible with a modern computer.
 
 After that, it's *hopeless*. Let's revisit the table from the previous posting.
 
@@ -86,6 +86,6 @@ After that, it's *hopeless*. Let's revisit the table from the previous posting.
 | 4 | 4 | 16! = 20922789888000 |
 | 5 | 5 | 25! = 15511210043330985984000000 |
 
-Modern computers are fast and have lots of memory, but to find all the distances in the 4x4 case, it would take months or years, depending on how clever you are in your calculations.  Storing the look-up table for 4x4 Toroidals would require more memory than any modern computer currently has.  Let's not even think about 5x5, because it's a million million times worse.
+Modern computers are fast and have lots of memory, but to find all the distances in the 4x4 case, it would take the fastest computer months or years, depending on how clever you are in your calculations.  Storing the look-up table for 4x4 Toroidals would require more memory than any modern computer currently has.  Let's not even think about 5x5, because it's a million million times worse.
 
 So a look-up table can be very fast, but it is only practical for relatively small Toroidals.  We need another way to navigate the Toroidal state space.

@@ -51,7 +51,7 @@ The full diagram above can  tell us a few things.  Just by tracing around the ci
 There will always be a path between any 2 states that is shortest, though there may be multiple paths with the same shortest length.
 
 While the diagram might look like it could be navigated like a map, it is certainly not as useful as a map.
-Locations in the real world are related to other locations by distance. 
+Locations in the real world are related to other locations by distance and direction.  
 A map models the locations and distances to be as consistent as possible with the real world.  Locations in the real world are also related to the underlying shape of the real world.  On small scales, we can pretend the underlying shape is flat. A straight line between two points on a small map represents the shortest distance between those two point, and the length of that line can be calculated if you know the locations of the two points.  On larger scales, the earth's curvature means the calculations are more complicated, but they can still be done.  
 
 But the diagram of the 2x2 Toroidal state space is not like a map.  A Toroidal state is not a location, and transitions don't have any direction.  The state space shows how states are related to each other, but not how they are related to any underlying shape.

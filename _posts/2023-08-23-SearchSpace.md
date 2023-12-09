@@ -13,7 +13,7 @@ table
     margin-right:auto;  
 }
 </style>
-In a previous post, [I presented the idea of a state space]({% post_url 2023-08-16-StateSpace %}).  I said that any computer program to solve Toroidals has to navigate the state space.  This is quite a literal statement: A solution to a Toroidal is a path from the start state to the goal state, using the transitions allowed in the state space diagram.  It's the answer to the question "Which moves do we need to make to get from the start state to the goal state?"  
+In a previous posting, [I presented the idea of a state space]({% post_url 2023-08-16-StateSpace %}).  I said that any computer program to solve Toroidals has to navigate the state space.  This is quite a literal statement: A solution to a Toroidal is a path from the start state to the goal state, using the transitions allowed in the state space diagram.  It's the answer to the question "Which moves do we need to make to get from the start state to the goal state?"  
 
 Let's look at the 2x2 Toroidal state space again, in a couple of ways.  First, the diagram we've seen once before:
 
@@ -88,4 +88,4 @@ After that, it's *hopeless*. Let's revisit the table from the previous posting.
 
 Modern computers are fast and have lots of memory, but to find all the distances in the 4x4 case, it would take the fastest computer months or years, depending on how clever you are in your calculations.  Storing the look-up table for 4x4 Toroidals would require more memory than any modern computer currently has.  Let's not even think about 5x5, because it's a million million times worse.
 
-So a look-up table can be very fast, but it is only practical for relatively small Toroidals.  We need another way to navigate the Toroidal state space.
+So a look-up table can be very fast, but it is only practical for relatively small Toroidals.  We need another way to navigate the state space for larger Toroidal puzzles.

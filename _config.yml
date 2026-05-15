@@ -26,11 +26,12 @@ email: m.c.horsch@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
     Pushing squares.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://m-horsch.github.io" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: MCHorsch
-github_username:  m-horsch
-toroidal_url: "https://biffproj.000webhostapp.com/Toroidal.html"
-toroidalreplay_url: "https://biffproj.000webhostapp.com/ToroidalReplay.html"
+url: "https://m-horsch.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
+# twitter_username: MCHorsch
+# github_username:  m-horsch
+toroidal_url: "https://m-horsch.github.io/PlayToroidal/Toroidal.html"
+toroidalreplay_url: "https://m-horsch.github.io/PlayToroidal/ToroidalReplay.html"
+
 
 # Build settings
 #   theme defaults are found in: 
@@ -41,6 +42,28 @@ plugins:
   - jekyll-seo-tag
 
 # mike added:
+collections:
+  introduction:
+    output: true
+
+  tutorial:
+    output: true
+    
+  solver:
+    output: true
+    
+  dataprovenance:
+    output: true
+
+  technical:
+    output: true
+
+  commentary:
+    output: true
+
+  agenda:
+    output: true
+
 # Build settings
 markdown: kramdown  
 
@@ -63,3 +86,6 @@ markdown: kramdown
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
+
+exclude:
+  - githubmover.sh

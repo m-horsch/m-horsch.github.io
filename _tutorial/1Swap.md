@@ -1,8 +1,7 @@
 ---
 layout: post
 title:  "The One-Swap Finish Problem"
-date:   2023-07-28 
-categories:  Playing
+date:   2023-08-23 
 ---
 <style>
 blockquote 
@@ -24,19 +23,28 @@ I take a tiled image, and apply random, legal moves.
 The legal moves are constrained so that a random move is never the opposite of the previous move.
 For example, if the previous random move was `L2`, if the next random move chosen is `R2`, I throw it away and choose another.
 
-However, there is a situation that can arise, when one (or both) of the dimensions is even.  I wrote this in [the introduction]({% post_url 2023-07-12-an-Introduction %}):
+However, there is a situation that can arise, when one (or both) of the dimensions is even.  I wrote this in [the introduction](/introduction/puzzles.html).
 
 > ![Image-style puzzle with one pair of tiles swapped](/TImages/Puzzle4x41S.png)
->  **Even Dimensions.**  Puzzles that have *at least* one even dimension (e.g., 3x4) can arrive at a  configuration that feels like a dead-end.
-> To be precise, in a puzzle with at least one even dimension, it is common to have the puzzle nearly completely solved, with exactly one pair of tiles out of place, as shown in the image to the left.
-> The two tiles highlighted with red outline are side-by-side, and out of place; the rest of the puzzle is solved.
-> If you could just lift the tiles out of the grid and swap them, they would be in the right place.
-> This configuration is still solvable, but the number of moves needed to swap the tiles is unexpectedly long.
-> This situation only occurs when there is at least one even dimension, and all tiles are unique.   I will say more about this in a separate posting. 
+>  **Even Dimensions.**  Puzzles that have *at least* one even dimension (e.g., 3x4) can arrive at a configuration that feels like a dead-end.  To be precise, in a puzzle
+> with at least one even dimension, it is common to have the puzzle nearly
+> completely solved, with exactly one pair of tiles out of place, as shown
+> in the image to the left.  The two tiles highlighted with red outline
+> are side-by-side, and out of place; the rest of the puzzle is solved. 
+> If you could just lift the tiles out of the grid and swap them, they
+> would be in the right place.  
+> 
+> This configuration can arise in image-based or block-based puzzles, and
+> is still solvable.  For block-based puzzles, with some exchangeable tiles, 
+> it's usually pretty easy to manage without any special strategies.  However, for image-based puzzles, where no tiles are exchangeable, solving this configuration 
+> is difficult, because the number of moves needed to swap the two tiles is unexpectedly long.  This situation only occurs when there is at least one even dimension, and all
+> tiles are unique.  I will say more about this in a separate article.
 
 
-I've been calling this situation the *1-swap finish problem* (1SF), since the Toroidal could be solved by making a single swap, and leaving every other tile unmoved.  However, as I mentioned earlier, one of the basic moves, which I called *swing,* swaps three tiles.
+I've been calling this situation the *1 swap finish problem* (1SF), since the Toroidal could be solved by making a single swap, and leaving every other tile unmoved.  However, as I mentioned earlier, one of the basic moves, which I called *swing,* swaps three tiles.
 We can apply a swing directly to these two tiles, and by doing so we can put one of these two tiles into place, but the other will form a 1SF situation with the third tile moved by swing.
+
+Note: In a block-based puzzle, the 1SF can be solved by the strategies we have already demonstrated.  For the remainder of this article, I will assume that the puzzle is image-based, with no exchangeable tiles.  It is this context that requires special strategies.
 
 Note: If you see 1SF in a 3x3 grid (or any grid where both dimensions are odd), it cannot be solved.  This situation cannot arise in Toroidal, because of the way puzzles are constructed.
 
@@ -70,3 +78,8 @@ The 1SF problem can occur in a problem with one even and one odd dimension, e.g.
 
 I limit my Toroidal puzzles to 5x5, so the only even dimension you see here is 4 rows and/or 4 columns.  But in principle, the 1SF problem can arise on even dimensions higher than 4.  In that case, after the sequence of moves, you'll have to push the row a couple of positions to the right to finish up.  The 1SF problem does occur on a 2x2, but it can be solved with one move.
 
+## Looking forward
+1. If you've read all tutorial documents, I've told you everything I know about how to help people solve Toroidal puzzles.  If you want to try your hand at solving Toroidal puzzles, here's a link to the [game page itself]({{ site.toroidal_url }}).
+1. Of course I would be interested in learning about other insights that you may have.  Feel free to contact me by email using the link at the bottom of the page. 
+1. I have more to say about my work on computer algorithms to solve Toroidal, which can be found on [the main Toroidal page](/index.html).
+ 

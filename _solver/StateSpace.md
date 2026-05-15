@@ -1,8 +1,7 @@
 ---
 layout: post
-title:  "The Toroidal State Space"
-date:   2023-08-16
-categories:  [Solver]
+title:  "Interlude: The Toroidal State Space"
+date:   2023-10-04
 usemathjax: true
 ---
 <style>
@@ -20,8 +19,12 @@ blockquote
 }
 </style>
 
-To date, we've tried to solve Toroidal using [Simple IDS]({% post_url 2023-08-02-IDS_A %}),
-and [Enhanced IDS]({% post_url 2023-08-09-IDS_B %}).
+### Abstract
+This article describes the Toroidal state space.  The state space for 2x2 Toroidals is shown explicitly with a number of layouts.  The state spaces for larger Toroidals is described in terms of size.  A comparison is made between finding a shortest path using a road map, and finding a short solution to a Toroidal puzzle.  
+
+### Details
+To date, we've tried to solve Toroidal using [Simple IDS](/solver/IDS_A.html),
+and [Enhanced IDS](/solver/IDS_B.html).
 Neither one of these is very effective.
 Let's look a little deeper into the nature of Toroidal problems, to see where the trouble is.
 
@@ -50,13 +53,10 @@ The line connecting these two states represents the action of moving the top row
 The full diagram above can  tell us a few things.  Just by tracing around the circle, you can see that there is a path from any configuration to any of the others.  In fact, there are multiple paths between any two configurations.  Some paths trace through more states, and others through fewer states.  When we talk about solution length, we're actually talking about how many transitions we have to cross in the state space.
 There will always be a path between any 2 states that is shortest, though there may be multiple paths with the same shortest length.
 
-While the diagram might look like it could be navigated like a map, it is certainly not as useful as a map.
-Locations in the real world are related to other locations by distance and direction.  
-A map models the locations and distances to be as consistent as possible with the real world.  Locations in the real world are also related to the underlying shape of the real world.  On small scales, we can pretend the underlying shape is flat. A straight line between two points on a small map represents the shortest distance between those two point, and the length of that line can be calculated if you know the locations of the two points.  On larger scales, the earth's curvature means the calculations are more complicated, but they can still be done.  
+While the diagram might look like it could be navigated like a map, it is certainly not as useful as a map. Locations in the real world are related to other locations by distance and direction.  A map models the locations, distances, and directions to be as consistent with the real world as needed to satisfy the purpose of the map.  Locations in the real world are also related to the underlying shape of the real world.  Geographical maps can model features of the world, such as hills, valleys, and rivers.  Road maps model available and convenient paths between locations through these geographic features, even if the features are not explicitly represented.  
 
 But the diagram of the 2x2 Toroidal state space is not like a map.  A Toroidal state is not a location, and transitions don't have any direction.  The state space shows how states are related to each other, but not how they are related to any underlying shape.
-There is no *right way* to organize the states and transitions for Toroidal. 
-To make the diagram above even somewhat understandable, I had to decide where to put the states.  I laid them out in a circle, because it seemed to be the most helpful visualization.  There are short lines, and long lines, but each line represents a basic move, and no basic move is longer than any other.   If I had kept every line the same length, the Toroidal states would all be in one big pile, and the diagram would not help anyone understand anything.  
+As far as I know, there is no *right way* to organize the states and transitions for Toroidal. To make the diagram above even somewhat understandable, I had to decide where to put the states.  I laid them out in a circle, because it seemed to be the most helpful visualization.  There are short lines, and long lines, but the length of a line in the visualization has no implication about distance in the state space.   If I had chosen to  keep every transition line the same length (because they all represent the same kind of simple move), the Toroidal states would all be in one big pile, and the diagram would not help anyone understand anything.  
 
 To illustrate this point, I moved the states around a bit, to produce the following diagram:
 
@@ -65,9 +65,9 @@ To illustrate this point, I moved the states around a bit, to produce the follow
 This diagram contains every state and transition in the original diagram.  While it may seem a little less tidy that the original, it is no less valid as a visualization.  There are still long lines, and short lines, and the pattern of transitions is not consistent.
 There may be a nicer way to lay out the state space, but I did not take the time to find it.  
 
-This is the first thing that make Toroidal hard to solve: it's hard to navigate.  Any computer program that tries to solve a 2x2 Toroidal has to find its way around this state space.  That's not to say that it's totally hopeless.  If most of the tiles are in the right place, you might have an intuition about what to do next.  But if most of the tiles are out of place, it's hard to know which move you should make.  
+This is the first thing that makes Toroidal hard to solve: it's hard to navigate.  Any computer program that tries to solve a 2x2 Toroidal has to find its way around this state space.  That's not to say that it's totally hopeless.  If most of the tiles are in the right place, you might have an intuition about what to do next.  But if most of the tiles are out of place, it's hard to know which move you should make.  
 
-**Larger Toroidals.**  I will not be providing visualizations of state spaces for larger Toroidal varieties. They are simply too many states, as demonstrated in the table below.
+**Larger Toroidals.**  I will not provide visualizations of state spaces for larger Toroidal varieties. They are simply too many states, as demonstrated in the table below.
 
 | Rows | Columns | Number of States |
 |--:|--:|--:|
@@ -82,9 +82,13 @@ Imagine trying to draw a similar state space diagram for 3x3 with the states in 
 There are 362880 states to draw, and each state has 12 lines to other states.
 Some of the lines would be drawn to nearby states, but other lines would have to be drawn to states on the other side of the circle.  If each state were drawn with tiles of about the same size and spacing as in the above diagram, the diameter of the circle would be more than 1500m.  Drawing that many states and transitions would take months, not minutes.  
 
-There's an interesting fact about 3x3 Toroidals.  The state space is separated into two distinct sets of states, both containing exactly half of the states.  I mentioned this in a previous posting on the [1-Swap Finish Problem]({% post_url 2023-07-28-1Swap %}).  So, there would be a way to draw the state space showing these two distinct sets.  There would be transitions within each set, but no transitions from one set to the other.  
+There's an interesting fact about 3x3 Toroidals.  The state space is separated into two distinct sets of states, both containing exactly half of the states.  I mentioned this in a previous article on the [1-Swap Finish Problem](/tutorial/1Swap.html).  So, there would be a way to draw the state space showing these two distinct sets.  There would be transitions within each set, but no transitions from one set to the other.  
 
-For 4x4 Toroidals, it's almost unimaginable.  There are 21 million million states.  A circular layout of all the 4x4 configurations (with the same size and spacing as above) would have a diameter 62 times the Sun's diameter.  If we had a Sun the same diameter as the diagram for 4x4 Toroidals, it would appear in the sky about the same size as a large melon held at arm's length. 
+For 4x4 Toroidals, there are 21 million million states.  A circular layout of all the 4x4 configurations (with the same size and spacing as above) would have a diameter 62 times the Sun's diameter.  If we had a Sun the same diameter as the diagram for 4x4 Toroidals, it would appear in the sky about the same size as a large melon held at arm's length. 
 
 This is the second reason that Toroidal is a hard problem to solve.  The number of possible states is unimaginably huge, after 3x3.  Any algorithm that tries to explore this state space has to find a way to ignore the vast majority of states.  
+
+**Looking forward.**
+In the next article, we'll use the structure of the Toroidal state space to 
+[build a map](/solver/LUT.html), at least for small size puzzles.
 

@@ -12,6 +12,26 @@ img
     margin-right:15px;
 }
 </style>
+<style>
+.badge-new {
+  display: inline-block;
+  background-color: #236f79;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 2px 8px;
+  border-radius: 12px;
+  text-transform: uppercase;
+}
+</style>
+
+<!-- Some Liquid code to identify the most recent posting -->
+{% assign all_docs = site.posts %}
+{% for collection in site.collections %}
+  {% assign all_docs = all_docs | concat: collection.docs %}
+{% endfor %}
+{% assign newest = all_docs | sort: "date" | last %}
+
 
 # What is Toroidal?
 
@@ -61,6 +81,9 @@ non-specialists.  The articles are intended to be read sequentially, but I've tr
 <OL>
 {% for sdoc in site.solver %}
   <li>
+      {% if sdoc.url == newest.url %}
+        <span class="badge-new">Newest</span>
+      {% endif %}
     <a href="{{ sdoc.url }}">
       {{ sdoc.title }}
     </a>
@@ -75,6 +98,9 @@ Short articles about technical matters and results, presented in a way that can 
 <OL>
 {% for xdoc in site.technical %}
   <li>
+      {% if xdoc.url == newest.url %}
+        <span class="badge-new">Newest</span>
+      {% endif %}
     <a href="{{ xdoc.url }}">
       {{ xdoc.title }}
     </a>
@@ -88,6 +114,9 @@ Various short articles and footnotes.  Some of these might be a bit technical.
 <OL>
 {% for cdoc in site.commentary %}
   <li>
+      {% if cdoc.url == newest.url %}
+        <span class="badge-new">Newest</span>
+      {% endif %}
     <a href="{{ cdoc.url }}">
       {{ cdoc.title }}
     </a>
@@ -101,6 +130,9 @@ What's on the agenda.  The order reflects when the topics were added, but not ne
 <OL>
 {% for adoc in site.agenda %}
   <li>
+      {% if adoc.url == newest.url %}
+        <span class="badge-new">Newest</span>
+      {% endif %}
     <a href="{{ adoc.url }}">
       {{ adoc.title }}
     </a>

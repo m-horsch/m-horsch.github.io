@@ -1,0 +1,85 @@
+---
+layout: post
+title:  "Bias #3: Random walk length"
+date:   2026-07-03
+categories:  Technical
+usemathjax: true
+---
+<style>
+table
+{
+    max-width: 300px;
+    margin-left:auto; 
+    margin-right:auto;  
+}
+img
+{
+    display:inline-block;
+    float:left;
+    margin-right:15px;
+}
+</style>
+
+### Abstract
+This is the third of four articles investigating bias in my process for Toroidal generation.  I've written [an article about the possible sources of bias](Bias_Intro), which sets the context for this article.
+
+To generate Toroidal puzzles for game-play or experiment, I use a program that performs a random walk through [the state space](/solver/StateSpace), starting at a specific location in the space.  In this article, I investigate the choice of $$K$$, the number of random moves used, or equivalently, the length of the random walk.  In the previous two articles, I used a very large value for $$K$$, under the assumption that if $$K$$ were big enough, there would be no question that the configurations were random.  The results showed that when $$K=1000$$, the datasets produced are very close to the population, at least for 3x3 Toroidals.  In this article, I show that, for 3x3 Toroidals, $$K=50$$ is sufficient to generate datasets that are close to the population.  
+
+
+### Empirical process to determine $$K$$
+Previous articles have shown that $$K=1000$$ is large enough to generate samples that match the population.  I was pretty sure this value is larger than necessary, but I was uncertain how much smaller I could make it and keep the samples unbiased. While there are theoretical approaches to determine a smaller value for $$K$$, I will use computing power instead.  
+
+I created 18 datasets of 3x3 Toroidal problems, each with $$N=5000$$.  I created 6 datasets for each of the following values for $$K$$: 50, 250, 1000.  These were generated using the [slight perturbation for $$K$$](Bias_A), without [cycle checking](Bias_B).  Some of the datasets used in this study were also used in the previous two studies, but at least 2 new datasets were generated for each value of $$K$$.   
+
+Since these are all 3x3 Toroidals, I can simply apply the [DIST](/solver/DIST) distance measure to each example, and output the true distance to the goal.  From the experimental results, I generated a histogram of distance values reported by DIST, shown below.
+
+![Histogram](/TImages/BiasHistogram_ChooseK.png)
+
+The histogram shows the proportion of the datasets plotted against distance.  There are random deviations in the heights of the different datasets, but this is well within what should be expected from random samples.  The true proportions, as found in the entire population, are shown in the plot as short dashed lines.  These were reported [here.](/technical/Distribution)
+
+The histogram shows that all 18 datasets are consistent with the population, and that there are no significant differences between the datasets generated with three different values of $$K$$.  
+
+Another way to look at the data is to look at the average solution length for the 18 datasets. 
+
+![Error Plot](/TImages/BiasError_ChooseK.png)
+
+The plot shows a running average in the relative error.  The horizontal axis shows how many of the samples were used in calculating an average.  The vertical axis shows the relative error of each running average, relative to the true average distance.  The closer the data get to the horizontal line showing zero relative error, the better.  As we can see, when the number of samples is quite small, the averages are not very close to the true average.  As we use more and more samples, the averages settle down, but never quite get to zero.  This is expected. 
+
+Finally, as before, I performed Z-tests, using the averages of each of the 8 datasets, as well as the known values from the entire population.  Briefly, this test checks if the sample averages are significantly different from the known, true average, and gives a p-value as a result.  The higher the p-value, the less likely that there is a difference.  The statistical values are presented below:
+
+| Dataset | Z-Value | P-Value |
+|---------|---------|---------|
+|  K1  |  1.0490 | 0.2942 | 
+| **K2** | **2.1752** |**0.0296**| 
+|  K3  |  0.5985 | 0.5495 | 
+|  K4  | -0.3372 | 0.7360 | 
+|  K5  | -0.7011 | 0.4833 | 
+|  K6  | -0.0600 | 0.9522 | 
+|  K7  | -0.7704 | 0.4411 | 
+|  K8  |  0.3212 | 0.7480 | 
+|  K9  | -0.5278 | 0.5976 | 
+| K10  |  0.4079 | 0.6834 | 
+| **K11** | **-2.2952** |**0.0217**|
+| K12  | -0.1293 | 0.8971 | 
+| K13  | -0.0253 | 0.9798 | 
+| K14  |  1.8114 | 0.0701 | 
+| K15  |  1.2049 | 0.2282 | 
+| K16  |  0.3039 | 0.7612 | 
+| K17  |  0.3386 | 0.7349 | 
+| K18  |  0.5985 | 0.5495 | 
+
+All but two of the p-values are greater than 0.05, which is a common threshold for significance.  Since the threshold is exactly 1/20, it is not too surprising that a couple (in bold, above) of the 18 datasets had a p-value lower than the threshold.  So we can be fairly sure that the samples generated by the different values for $$K$$ represent the population sufficiently well.  
+
+
+### Conclusions
+Since there is no significant visual or statistical difference in the datasets for the different values of $$K$$, we can be reasonably sure that $$K=50$$ is sufficient to generate samples that match the population of 3x3 Toroidals.  This value for $$K$$ can be estimated using mathematical techniques involving group theory, and graph theory, but my knowledge of this combination of topics is not yet firm enough to write about it.
+
+
+
+
+**Looking forward.**
+In the next article, I consider the [choice of a value for $$N$$](Bias_D) that will balance precision and efficiency.  
+
+**Data Provenance.**
+Detailed information about the data summarized in this article can be found
+[here](/dataprovenance/Bias_C).

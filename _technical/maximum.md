@@ -12,7 +12,9 @@ table
 }
 </style>
 
-Any Toroidal puzzle has an optimal solution, namely the shortest sequence of moves that solves it.  The *maximum shortest solution* is the longest optimal solution over a whole class of Toroidals.  For example, the class of 3x3 Toroidals, with no exchangeable tiles has solution lengths at most 8 moves long.  In terms of a [state space graph](/solver/StateSpace.html), this distance is the farthest away any state can be from any other state, in terms of the number of transitions.
+Any Toroidal puzzle has an optimal solution, namely the shortest sequence of moves that solves it.  The *maximum shortest solution* is the longest optimal solution over a whole class of Toroidals.  For example, the class of 3x3 Toroidals, with no exchangeable tiles has solution lengths at most 8 moves long.  In terms of a [state space graph](/solver/StateSpace.html), this distance is the farthest away any state can be from any other state, in terms of the number of transitions.  
+
+In the language of graph theory, this distance is called the *diameter* of the graph.  No matter which node you choose in the graph, the shortest path to every other node in the graph is not more than the diameter.
 
 I will use the abbreviation "MSSL" to refer to the length of the maximum shortest solution.  This concept is called "God's number" when applied to (normal 3x3x3) Rubik's cubes.  See [God's algorithm](https://en.wikipedia.org/wiki/God%27s_algorithm).  
 

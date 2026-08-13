@@ -19,6 +19,7 @@ img
 }
 </style>
 
+Revised: 2026-08-12
 
 ### Abstract
 This article describes a modification of the greedy search strategy used in the previous articles, so that the algorithm chooses between possible moves that explicitly avoid useless sequences ([as described here](/solver/IDS_B.html)).  We show that this technique reduces sequence length, and also solution time, for all the distance estimating functions we have considered (MTC, TMD, scaled TMD).  The data show that this variation of greedy search quickly finds solutions that are still too far from optimal to be considered competitive with the optimal solution quality.
@@ -49,19 +50,19 @@ There is a lot of data to look at, so I've broken it down into tables of related
 
 
 |                            | Number Solved | Average Time | MinL |   AveL  |  MaxL |
-|:-----------------------------|------------:|-------------:|-----:|--------:|------:|
-| [MTC (no cycles)](/solver/MTC.html)  | 100 |     0.089s   |  16  | 256.0   | 942   |
-|  MTC (no cycles, prevent)            | 100 |     0.031s   |   9  | 162.4   | 727  |
+|:---------------------------|------------:|-------------:|-----:|--------:|------:|
+| [MTC (no cycles)](MTC)     | 250  |    0.046    |   2  | 202.0   | 915   |
+|  MTC (no cycles, prevent)  | 250 |     0.022    |   2  | 171.2   | 713  |
 
-Using MTC and preventing useless sequences improves the results substantially, though the solutions are still quite far from optimal.
+Using MTC and preventing useless sequences improves the results somewhat, though the solutions are still quite far from optimal.
 
 
 ### TMD 
 
 |                            | Number Solved | Average Time | MinL |   AveL  |  MaxL |
-|:-----------------------------|------------:|-------------:|-----:|--------:|------:|
-| [TMD (no cycles)](/solver/TMD.html)  | 100 |     0.082s   |   6  | 246.2   | 738   |
-| TMD (no cycles, prevent)             | 100 |     0.004s   |   6  |  44.1   |  199   |
+|:---------------------------|------------:|-------------:|-----:|--------:|------:|
+| [TMD (no cycles)](TMD)     | 250  |    0.053    |   2  | 237.8   |  771   |
+| TMD (no cycles, prevent)   | 250  |    0.003    |   2  |  48.8   |  267   |
 
 Preventing useless sequences improves the results significantly for TMD (unscaled).  
 
@@ -69,8 +70,8 @@ Preventing useless sequences improves the results significantly for TMD (unscale
 
 |                          | Number Solved | Average Time | MinL |   AveL  |  MaxL |
 |:-----------------------------|------------:|-------------:|-----:|--------:|------:|
-| [TMD Rounding Down (no cycles)](/solver/ScaledEstimates.html)   | 100 |    0.014s  |  10  |  97.5   |  293   |
-| TMD Rounding Down (no cycles, prevent)                          | 100 |    0.022s  |  17  | 137.9   | 1031   |
+| [TMD Floor (no cycles)](ScaledEstimates)   | 250 |  0.015  |  2  | 124.5   | 401   |
+| TMD Floor (no cycles, prevent)     | 250 |  0.016  |  2  | 134.6   | 1031   |
 
 For TMD scaled using rounding down, the results are actually worse when useless sequences are prevented!  
 
@@ -78,22 +79,22 @@ For TMD scaled using rounding down, the results are actually worse when useless 
 
 |                            | Number Solved | Average Time | MinL |   AveL  |  MaxL |
 |:-----------------------------|------------:|-------------:|-----:|--------:|------:|
-| [TMD Rounding Up (no cycles)](/solver/ScaledEstimates.html)     | 100 |    0.016s  |   5  |  92.2   | 358   |
-| TMD Rounding Up (no cycles, prevent)     | 100 |    0.009s  |   5  |  80.9   |  310   |
+| [TMD Ceil (no cycles)](ScaledEstimates)     | 250 |  0.008  |   2  |  84.5   | 428  |
+| TMD Ceil (no cycles, prevent)               | 250 |  0.007  |   2  |  92.5   | 351  |
 
-For TMD scaled using rounding up, preventing useless sequences improves the average time, and the average length of solution, but not as much as we saw for unscaled TMD.
+For TMD scaled using rounding up, preventing useless sequences has little effect on the average solution time, or the average length of solution, but perhaps a little better on the maximum solution length.
 
 Finally, here's a table showing how the new results compare to methods that can produce optimal solutions.
 
 |                              | Number Solved | Average Time | MinL |   AveL  |  MaxL  |
 |:---------------------------|------------------:|-----------:|-----:|--------:|-------:|
-| [Enhanced IDS](/solver/IDS_B.html)       | 100 |   12.6s    |   4  | **6.1** |  **8** |
-| [Look-up Table](/solver/LUT.html)        | 100 |    0.0001s |   4  | **6.1** |  **8** |
-| [Distance Table](/solver/DIST.html)      | 100 |    0.0005s |   4  | **6.1** |  **8** |
-| MTC (no cycles, prevent)                 | 100 |    0.031s  |   9  | 162.4   |  727   |
-| TMD (no cycles, prevent)                 | 100 |    0.004s  |   6  |  44.1   |  199   |
-| TMD Rounding Down (no cycles, prevent)   | 100 |    0.022s  |  17  | 137.9   | 1031   |
-| TMD Rounding Up (no cycles, prevent)     | 100 |    0.009s  |   5  |  80.9   |  310   |
+| [Enhanced IDS](IDS_B)          | 250 |    5.736    |   2  | **6.1** |  **8** |
+| [Look-up Table](LUT)           | 250 |    0.00002  |   2  | **6.1** |  **8** |
+| [Distance Table](DIST)         | 250 |    0.0002   |   2  | **6.1** |  **8** |
+|  MTC (no cycles, prevent)      | 250 |     0.022   |   2  | 171.2   |  713   |
+| TMD (no cycles, prevent)       | 250 |     0.003   |   2  |  48.8   |  267  |
+| TMD Floor (no cycles, prevent) | 250 |     0.016   |   2  | 134.6   | 1031  |
+| TMD Ceil (no cycles, prevent)  | 250 |     0.007   |   2  |  92.5   |  351   |
 
 As shown, combining greedy search, cycle prevention, and useless sequence prevention, with ordinary unscaled TMD produces the best results.  But even in this configuration, the average solution length is quite far from optimal.
 

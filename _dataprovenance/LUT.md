@@ -13,24 +13,22 @@ table
 }
 </style>
 
+Revised: 2026-08-06
+
 ### Cross-references
 This document describes the provenance of the data presented in the following article:
   * [Mapping the Toroidal State Space](/solver/StateSpace.html)
 
 ### Input Data
-  * `Data/Provenance/Common_Inputs/3x3_m500.txt`
+  * `Data/Provenance/Common_Inputs/3x3_N250_K50.txt`
+  * $$N=250, K=50$$, no cycle checking  
 
 ### Solver configuration
-  * `Data/Provenance/LUT/LUT.py`
+  * `Data/Provenance/LUT/LUT.sh`
 
 ### Output data
-  * `Data/Provenance/LUT/2025_02_10_3x3m500_LUT_k100.txt`
+  * `Data/Provenance/LUT/2026_08_06_LUT_LUT_3x3_N250_K50.txt`    
 
-### Scripts for tabulation
-  * Incomplete
-
-### Tables and figures used
-  * Incomplete
-
-### Appendix
-  * Incomplete
+### Notes:
+  * Python version: 3.13.13
+  * Original data reported slightly slower times, based on a smaller dataset, and earlier version of Python.

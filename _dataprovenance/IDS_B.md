@@ -14,25 +14,22 @@ table
 }
 </style>
 
+Revised: 2026-08-06
+
 ### Cross-references
 This document describes the provenance of the data presented in the following article:
   * [Preventing useless sequences](/solver/IDS_B.html)
 
 ### Input Data
-  * `Data/Provenance/Common_Inputs/3x3_m500.txt`
+  * `Data/Provenance/Common_Inputs/3x3_N250_K50.txt`
+  * $$N=250, K=50$$, no cycle checking  
   
 ### Solver configuration
-  * `Data/Provenance/EnhancedIDS/EnhancedIDS.py`
+  * `Data/Provenance/EnhancedIDS/EnhancedIDS.sh`
 
 ### Output data
-  * `Data/Provenance/EnhancedIDS/2023_08_31_3x3_m500_IDS_S_k100.txt`    
-  * Note: the `_S_` denotes the use of a module named "Symmetry" which prevents useless sequences of actions.
+  * `Data/Provenance/EnhancedIDS/2026_08_06_IDS_Symmetry_3x3_N250_K50.txt`    
   
-### Scripts for tabulation
-  * Incomplete
-  
-### Tables and figures used
-  * Incomplete
-
-### Appendix
-  * Incomplete
+### Notes:
+  * Python version: 3.13.13
+  * Original data reported slightly slower times, based on a smaller dataset, and earlier version of Python,

@@ -13,9 +13,11 @@ table
 }
 </style>
 
+Revised: 2026-08-06
+
 ### Abstract
-A simple implementation of Iterative Deepening Search (IDS) is applied to 3x3 Toroidals.  This application of IDS is called Simple IDS because it tries all possible sequences of moves.  We investigate the effectiveness of Simple IDS by applying it to a set of 100 randomly scrambled 3x3 Toroidals. 
-The algorithm was given a time limit of 2 minutes, and was only able to solve 62 of these examples.  Ignoring the unsolved examples, the average time used by Simple IDS to solve these 62 examples was about 61 seconds.
+A simple implementation of Iterative Deepening Search (IDS) is applied to 3x3 Toroidals.  This application of IDS is called Simple IDS because it tries all possible sequences of moves.  We investigate the effectiveness of Simple IDS by applying it to a set of 250 randomly scrambled 3x3 Toroidals. 
+The algorithm was given a time limit of 2 minutes, and was only able to solve 199 of these examples.  Ignoring the unsolved examples, the average time used by Simple IDS to solve these 199 examples was about 47 seconds.
 
 ### Details
 **The simplest possible computer algorithm for Toroidal.**
@@ -25,21 +27,24 @@ Iterative Deepening Search (IDS).  IDS is a general purpose algorithm that can b
 I have an implementation of IDS which does nothing fancy.  I called it simple because it tries all the possible combinations of moves, even the ones that are obviously not worth trying, such as `L1 R1 L1 R1` which does nothing useful.  We're giving it a try because it's simple, but we shouldn't be too hopeful.  It's basically a place to start, and to appreciate the difficulty of the problem.
 
 **Running the program.**
-I created 100 random 3x3 Toroidal problems.  These Toroidal problems have 9 unique tiles (that is, there are no exchangeable tiles to make the problem easier), and each Toroidal was scrambled using 500 random moves.  I applied my Simple version of IDS to these 100 problems.  The solver was given a time limit of 120 seconds, which is plenty of time for a human to solve a 3x3 Toroidal.  
+I created 250 random 3x3 Toroidal problems. 
+These Toroidal problems have 9 unique tiles (that is, there are no exchangeable tiles to make the problem easier), and each Toroidal was scrambled using 50 random moves.  I applied my Simple version of IDS to these 250 problems.  The solver was given a time limit of 120 seconds, which is plenty of time for a human to solve a 3x3 Toroidal.  
 
-Note: While working on this Simple IDS solver, I began to suspect that every 3x3 Toroidal could be solved in 8 moves or less.  In later experiments, I was able to confirm this suspicion.  A future article will report on this.
+Note: While working on this Simple IDS solver, I began to suspect that every 3x3 Toroidal could be solved in 8 moves or less.  In later experiments, I was able to confirm this suspicion.  [A future article will report on this.](/technical/maximum)
 
-The implementation of IDS was able to solve 62 out of 100 3x3 Toroidals.  The other 38 were unsolved.  Of these 62 solved problems, there were solutions of length 4, 5, and 6.  The remaining 38 Toroidals have solutions of length 7 and higher, which this version of the solver was unable to find within the 2 minute time limit.  The results are summarized below:
+The implementation of IDS was able to solve 199 out of 250 3x3 Toroidals.  The average time to solve these problems is 47.1 seconds
+Of these 199 solved problems, there were solutions of lengths 2-7.  The remaining 51 Toroidals have solutions of length 7 and higher, which this version of the solver was unable to find within the 2 minute time limit.  The results are summarized below:
 
 | Solution length | Number | Average time (seconds)|
 |:-:|--:|--:|
-| 4 | 7  |  0.47 |
-| 5 | 17 |  4.20 |
-| 6 | 38 | 38.90 |
+| 2 |  1 |  0.002   |
+| 3 |  0 |  N/A     |
+| 4 |  8 |  0.210   |
+| 5 | 52 |  1.930   |
+| 6 | 98 | 23.437   |
+| 7 | 40 | 81.109   |
+| 8 |  0 | N/A      |
 
-The trend in the average time required to solve Toroidal is pretty obvious.  Solutions of length 5 take about 9 times longer to find on average than solutions of length 4.  Likewise, solutions of length 6 also take about 9 times longer that solutions of length 5.  We could be more precise than "about 9 times" but we're just getting started, so there's no need to nail down this factor precisely.
-
-If we assume that this trend continues to solutions of length 7 and 8, we can predict that to find a solution of length 7, we’ll need about 9 times longer than we needed for solutions of length 6, or about 350 seconds (just under 5 minutes).  To find solutions of length 8, about 3250 seconds (about 50 minutes).  
 
 **Simple IDS is not good enough.**
 These estimates are not good news for the Simple IDS implementation.  A human should be able to solve any 3x3 Toroidal in a couple of minutes.  The Simple strategy of checking every sequence up to length 8 considers too many useless sequences.  

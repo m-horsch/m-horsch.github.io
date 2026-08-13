@@ -19,9 +19,10 @@ img
 }
 </style>
 
+Revised: 2026-08-12
 
 ### Abstract
-This article describes a calculation called Total Manhattan Distance (TMD), which we can use to estimate the distance between any Toroidal state and the goal state.  The confusion matrix shows that the TMD estimates are not very accurate, and over-estimates the true distance by a lot.  The RMSE for TMD is substantially larger than for MTC.  When used to guide a greedy search, TMD causes the search to get stuck in infinite cycles in all but 2 of the 100 example Toroidals given.  However, if cycles are prevented during search, TMD works about as well as MTC.  TMD can find solutions with about the same average time as MTC, with slightly shorter solution length.  The quality of solution found my TMD is still substantially below optimal.
+This article describes a calculation called Total Manhattan Distance (TMD), which we can use to estimate the distance between any Toroidal state and the goal state.  The confusion matrix shows that the TMD estimates are not very accurate, and over-estimates the true distance by a lot.  The RMSE for TMD is substantially larger than for MTC.  If cycles are prevented during search, TMD works about as well as MTC.  TMD can find solutions with about the same average time as MTC, and about the same average solution length.  The quality of solution found by TMD is likewise substantially below optimal.
 
 ### Details
 In the previous article, I considered a very simple calculation called Misplaced Tile Count (MTC) to estimate the true distance between any given state and the goal state.
@@ -59,20 +60,24 @@ The simple greedy search strategy was only able to solve 2 of these 100 problems
 
 Using the version of the program that prevents the strategy from repeating a cycle, greedy search using the TMD estimate was able to solve all 100 problems.  The data is below.  The table is similar to the ones we've seen before, but I've added three columns.  It shows data about solution quality, in terms of the minimum solution length (MinL), the average solution length (AveL), and the maximum solution length (MaxL).  The numbers in **bold** are optimal values; numbers in *italics* are estimated values based on partial data.
 
-|                          | Number Solved | Average Time | MinL |  AveL | MaxL |
-|:-------------------------|--------------:|-------------:|-----:|------:|-----:|
-| [Simple IDS](/solver/IDS_A.html)     |  62 | *322s*     |   4  |   5.4   |   6   |
-| [Enhanced IDS](/solver/IDS_B.html)   | 100 |   12.6s    |   4  | **6.1** | **8** |
-| [Look-up Table](/solver/LUT.html)    | 100 |    0.0001s |   4  | **6.1** | **8** |
-| [Distance Table](/solver/DIST.html)  | 100 |    0.0005s |   4  | **6.1** | **8** |
-| [MTC (no cycles)](/solver/MTC.html)  | 100 |    0.089s  |  16  | 256.0   | 942   |
-| TMD (no cycles)                      | 100 |    0.082s  |   6  | 246.2   | 738   |
 
-The TMD results are comparable to MTC: the average time to find a solution using TMD (no cycles) is less than one-tenth of a second.   It appears that TMD is slightly better than MTC in terms of solution length, using about the same average time.
+|                |  3x3 Number Solved |  3x3 Average Time  | MinL |  AveL   | MaxL  |
+|:---------------|-------------------:|-------------------:|-----:|--------:|------:|
+| [Simple IDS](/solver/IDS_A.html)    | 199  |   47.1      |   2  |   5.8   |   7   |
+| [Enhanced IDS](/solver/IDS_B.html)  | 250  |    5.736    |   2  | **6.1** | **8** |
+| [Look-up Table](/solver/LUT.html)   | 250  |    0.00002  |   2  | **6.1** | **8** |
+| [Distance Table](/solver/DIST.html) | 250  |    0.0002   |   2  | **6.1** | **8** |
+| [MTC (no cycles)](/solver/MTC.html) | 250  |    0.046    |   2  | 202.0   | 915   |
+| TMD (no cycles)                     | 250  |    0.053    |   2  | 237.8   | 771   |
+
+
+The TMD results are comparable to MTC: the average time to find a solution using TMD (no cycles) is around 50 milliseconds.  The table reports an average solution length that's a bit higher for TMD than MTC, but the variance (not shown) is quite high, and the two strategies rank as roughly equivalent for average solution length over the dataset.
 
 
 **Looking forward.**
-The distance estimates MTC and TMD are fairly easy to calculate, but can't really guide our current search strategy towards high quality solutions quickly.  Before I take a somewhat drastic step into exploring a different search strategy, I will make some changes to the way these two distance estimates are used.  The key idea is that each move that we make on a 3x3 Toroidal puzzle moves 3 tiles.  In other words, distances might be over-estimated by as much as a factor of three.  Better solutions might be found if estimates like TMD are divided by 3 (for 3x3 Toroidals, specifically).
+The distance estimates MTC and TMD are fairly easy to calculate, and find a solution fairly quickly, they can't really guide the greedy search strategy towards high quality solutions.  
+
+Before I take a somewhat drastic step into exploring a different search strategy, I will make some changes to the way these two distance estimates are used.  The key idea is that each move that we make on a 3x3 Toroidal puzzle moves 3 tiles.  In other words, distances might be over-estimated by as much as a factor of three.  Better solutions might be found if estimates like TMD are divided by 3 (for 3x3 Toroidals, specifically).
 
 In the next article, I'll explore [distance estimate scaling](/solver/ScaledEstimates)  and its implications.  
 

@@ -7,7 +7,7 @@ usemathjax: true
 <style>
 table
 {
-    max-width: 0px;
+    max-width: 350px;
     margin-left:auto; 
     margin-right:auto;  
 }

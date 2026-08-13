@@ -19,9 +19,11 @@ table
 }
 </style>
 
+Revised: 2026-08-06
+
 ### Abstract
 By preventing many (but not necessarily all) useless sequences of moves, an Enhanced version of Iterative Deepening Search is shown to be more effective than Simple IDS.
-Enhanced IDS is applied to a set of 100 randomly scrambled 3x3 Toroidals.  The algorithm was given a time limit of 2 minutes, and was able to solve 99 of these examples.  The average time used by Enhanced IDS to solve these examples was about 12.6 seconds.
+Enhanced IDS is applied to a set of 250 randomly scrambled 3x3 Toroidals.  The algorithm was given a time limit of 2 minutes, and was able to solve all 250 examples.  The average time used by Enhanced IDS to solve these examples was about 5.736 seconds.
 
 ### Details
 **Some sequences are not worth looking at.**
@@ -44,33 +46,29 @@ Admittedly, my description is a bit vague, and we can only apply it in a limited
 With just this one principle, we can eliminate a vast quantity of useless moves.  This principle can be encoded in the part of the program that proposes new moves to add to a sequence.  I was able to encode this feature in such a way that the potentially useful moves were calculated only once, at the start of the program, as opposed to having them be recalculated every time the solver considers a move.  This boosts the speed of the solver even more.   
 
 **Running the program.**
-I applied my Enhanced version of IDS to the same set of 100 random 3x3 Toroidal problems as in the previous article.  The solver was given a time limit of 120 seconds, just as in the previous article.
+I applied my Enhanced version of IDS to the same set of 250 random 3x3 Toroidal problems as in the previous article.  The solver was given a time limit of 120 seconds, just as in the previous article.
 
-It was able to solve 99 out of 100 3x3 Toroidals.  I forced the solver to find a solution to the last remaining example, which had a solution of length 8, and took 226s.  Since this was the only one, I included it in my statistical calculations. The results are summarized below:
+It was able to solve 250 out of 250 3x3 Toroidals.  The average time required was 5.736 seconds.  The results can be broken down by solution length, as follows:
 
 | Solution length | Number | [Simple IDS](/solver/IDS_A.html) | Enhanced IDS | 
 |:-:|--:|--:|--:|
-| 4 |   7 |       0.47 |   0.101 |
-| 5 |  17 |       4.20 |   0.631 |
-| 6 |  38 |      38.90 |   3.710 |
-| 7 |  35 |    *350*   |  20.900 |
-| 8 |   3 |   *3150*   | 126.700 |
+| 2 |  1 |     0.002  |  0.001 |
+| 3 |  0 |     N/A    |  N/A   |
+| 4 |  8 |     0.210  |  0.047 |
+| 5 | 52 |     1.930  |  0.288 |
+| 6 | 98 |    23.437  |  2.377 |
+| 7 | 83 |    *81.109*  | 10.060 |
+| 8 |  9 |    N/A     | 38.965 |
 
-The column **Simple IDS** shows the times  (in seconds) needed by the Simple IDS implementation from before.  The column labelled **Enhanced IDS** shows the time (in seconds) needed when useless sequences are avoided, as described above.  Remember that these are averages, and that individual Toroidal puzzles can take longer or shorter than these average times.
+The column **Simple IDS** shows the times  (in seconds) needed by the Simple IDS implementation from before.  Note that for problems with Solution length 7, Simple IDS only solved 40 of the 83 problems in the dataset; so the average time is italicized for emphasis.
 
-Italicized values in the table are crude estimates.  In the previous article, I remarked that the solution averages for Simple IDS increase by about a factor of 9.  From this pattern, I guessed that Simple IDS would require about 350 seconds on average to find solutions of length 7, and 3150 seconds to find solutions of length 8.    
+The column labelled **Enhanced IDS** shows the time (in seconds) needed when useless sequences are avoided, as described above.  Remember that these are averages, and that individual Toroidal puzzles can take longer or shorter than these average times.
 
-In the solution times for Enhanced IDS, we can see an increase of about a factor of 6.  This represents a substantial improvement, because this factor compounds with the depth of the shortest solution.  The deeper Enhanced IDS has to look, the better it will seem, compared to Simple IDS.  
- 
 
 **Enhanced IDS is still pretty slow.**
 Avoiding useless sequences speeds up IDS significantly.  Going forward, we will continue to use this principle of avoiding useless sequences, whenever it makes sense.  
 
-Even if we avoid useless sequences, IDS still takes a rather long time to solve the trickiest 3x3 Toroidals.  It will take even longer to solve Toroidals larger than 3x3.  
-
-I have encountered computational problems where the best thing to do is let IDS work until it finds a solution; for example, automated mathematical reasoning applications.  In such applications, the target state is vague and generic, and it's hard to aim for it.  You'll have to take my word for it that it's true, since this is not the time or place for a digression on automated mathematical reasoning.  
-
-However, the goal for Toroidal is not vague or generic; we know exactly how the tiles should be arranged when we're done.  It's entirely reasonable to take advantage of this, and try to choose moves that seem to get us closer to goal.  That's the direction for the next few articles.
+When we avoid useless sequences, on average, IDS will be very fast compared to a human.  For problems whose solution length is 8 moves, the average of 38.9 seconds is still very competitive compared to a human solver.  However, we can't be too satisfied with these results, because this method is unlikely to be able to solve Toroidals larger than 3x3.  We'll need a substantially faster method to tackle such problems.
 
 **Looking forward.**
 In the next article, we'll explore the structure of the puzzle by describing the [Toroidal state space](/solver/StateSpace.html).

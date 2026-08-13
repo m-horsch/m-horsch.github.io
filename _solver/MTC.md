@@ -19,6 +19,8 @@ img
 }
 </style>
 
+Revised: 2026-08-12
+
 ### Abstract
 This article describes a very simple calculation called Misplaced Tile Count (MTC), which we can use to estimate the distance between any Toroidal state and the goal state.  The main reason to try this estimate is that it is simple.  The confusion matrix shows that the MTC estimates are not very accurate, and this is also indicated by a relatively large RMSE.  When used to guide a greedy search, MTC causes the search to get stuck in infinite cycles.  However, if cycles are prevented during search, MTC can find solutions relatively quickly, but the quality of solution is substantially below optimal.
 
@@ -58,22 +60,22 @@ Another feature to notice is that the columns labelled *1* and *2* have no count
 I used the MTC estimate as a replacement for the true distance, using a greedy search. 
 In other words, at every node, the greedy search calculated MTC for every possible next state, and selected the state that had the lowest MTC value.  All other states are discarded, and the search continues from the selected state. It's important to remember that this greedy search strategy is based on the [distance-table method](/solver/DIST.html), and as a result, there is no protection against trying useless sequences, which I mentioned in a [previous article](/solver/IDS_B.html).
 
-I applied this search strategy to the same 100 3x3 problems as before.
+I applied this search strategy to a collection of 100 3x3 problems (a dataset composed prior to my revisions outlined [here](/technical/Bias_Intro)).
 The program was not able to solve any of these 100 problems; search times out before finding a solution.  I suspected that MTC leads the greedy search through a cycle of states (e.g., from A to B to C and then back to A), and once started on this cycle, greedy search will just keep cycling.  This cannot happen with exact distances, of course, but it is not surprising that MTC causes greedy search to cycle. The MTC estimate does not provide sufficient guidance to be the only source of information to solve Toroidal puzzles.  
 
-I modified the greedy search to prevent cycles.  More precisely, I modified the search strategy so that if the distance estimate suggests moving to a state it had visited once before, the suggestion is discarded, and the next best state is tried.  With this modification, greedy search with MTC is able to solve all 100 problems.  The table below summarizes the timing data.
+I modified the greedy search to prevent cycles.  More precisely, I modified the search strategy so that if the distance estimate suggests moving to a state it had visited once before, the suggestion is discarded, and the next best state is tried.  With this modification, I applied greedy search with MTC to a dataset containing 250 3x3 Toroidal puzzles (the revised dataset), and was able to solve all 250 problems.  The table below summarizes the timing data.
 
-|                | 3x3 Number Solved | 3x3 Average Time   |
-|:---------------|------------------:|-------------------:|
-| [Simple IDS](/solver/IDS_A.html)    |  62 |    *322s*   |
-| [Enhanced IDS](/solver/IDS_B.html)  | 100 |   12.6s     |
-| [Look-up Table](/solver/LUT.html)   | 100 |    0.0001s  |
-| [Distance Table](/solver/DIST.html) | 100 |    0.0005s  |
-| MTC (no cycles)                     | 100 |    0.089s   |
+|                |  3x3 Number Solved |  3x3 Average Time  |
+|:---------------|-------------------:|-------------------:|
+| [Simple IDS](/solver/IDS_A.html)    | 199  |   47.1      |
+| [Enhanced IDS](/solver/IDS_B.html)  | 250  |    5.736    |
+| [Look-up Table](/solver/LUT.html)   | 250  |    0.00002  |
+| [Distance Table](/solver/DIST.html) | 250  |    0.0002   |
+| MTC (no cycles)                     | 250  |    0.046   |
 
 As shown in the table, the average time to find a solution using MTC (no cycles) is less than one-tenth of a second.  That's not at all a bad result.
 
-Unfortunately, the solution quality is rather poor, which is not shown in the table.  Whereas all the other methods in the table obtain an optimal solution for each solved Toroidal, the solutions obtained by MTC (no cycles) average 256 moves; the best solution was 16 moves, and the longest was 942 moves.  In contrast, on average, the optimal solution length for 3x3 Toroidals is 6.1, with 8 being the maximum.  
+Unfortunately, the solution quality is rather poor, which is not shown in the table.  Whereas all the other methods in the table obtain an optimal solution for each solved Toroidal, the solutions obtained by MTC (no cycles) average 202 moves; the best solution was 2 moves, and the longest was 915 moves.  In contrast, on average, the optimal solution length for 3x3 Toroidals is 6.1, with 8 being the maximum.  
 
 
 **Looking forward.**

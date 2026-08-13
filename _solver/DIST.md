@@ -7,13 +7,16 @@ usemathjax: true
 <style>
 table
 {
-    max-width: 0px;
+    max-width: 350px;
     margin-left:auto; 
     margin-right:auto;  
 }
 </style>
+
+Revised: 2026-08-06
+
 ### Abstract
-This article describes the application of a distance table (DIST) to solve Toroidal puzzles of size 3x3 and smaller.  The table stores the actual distance between a specific goal state, and every other possible Toroidal state.  The tables are relatively small, and can easily fit into main memory for most modern personal computing devices.  A simple greedy search algorithm using this table can solve randomly scrambled 3x3 Toroidal puzzles with an average time of about 0.5 milliseconds.  As with the look-up table variant (LUT), this technique is limited in application, as the size of such tables for Toroidals larger than 3x3 is prohibitively large.
+This article describes the application of a distance table (DIST) to solve Toroidal puzzles of size 3x3 and smaller.  The table stores the actual distance between a specific goal state, and every other possible Toroidal state.  The tables are relatively small, and can easily fit into main memory for most modern personal computing devices.  A simple greedy search algorithm using this table can solve randomly scrambled 3x3 Toroidal puzzles with an average time of about 0.2 milliseconds.  As with the look-up table variant (LUT), this technique is limited in application, as the size of such tables for Toroidals larger than 3x3 is prohibitively large.
 
 ### Details
 In the previous article, I showed how we could [map the Toroidal state space](LUT.html) by constructing a look-up table (LUT).  In that article, the table stored the state of the Toroidal as a string of digits, along with the move that transitions to a better state, and then the better state itself.  The first few lines looked like this:
@@ -70,12 +73,12 @@ The table below compares the average time to solve one 3x3 Toroidal, compared wi
 
 |                | 3x3 Average Time  |
 |:---------------|-----------:|
-| [Simple IDS](/solver/IDS_A.html)    |   *322s*   |
-| [Enhanced IDS](/solver/IDS_B.html)  |   12.6s    |
-| [Look-up Table](/solver/LUT.html)   |   0.0001s  |
-| Distance Table |   0.0005s  |
+| [Simple IDS](/solver/IDS_A.html)    |   47.1   |
+| [Enhanced IDS](/solver/IDS_B.html)  |    5.736    |
+| [Look-up Table](/solver/LUT.html)   |   0.00002  |
+| Distance Table |   0.0002  |
 
-Using exact distances takes about 5 times longer than using the look-up table from before, but both are extremely fast, compared to all the previous methods.  The Look-up Table method is faster, because the look-up table dictates exactly which moves to make, immediately and without any ambiguity.  For the Distance Table method, the computer has to look at all the moves it could make, and choose the one that gets it closest.  So there is a bit of extra time needed to decide each additional step.
+Using exact distances takes about 10 times longer than using the look-up table from before, but both are extremely fast, compared to all the previous methods.  The Look-up Table method is faster, because the look-up table dictates exactly which moves to make, immediately and without any ambiguity.  For the Distance Table method, the computer has to look at all the moves it could make, and choose the one that gets it closest.  So there is a bit of extra time needed to decide each additional step.
 
 **Looking forward.**
 The problem with the distance table method is not the extra costs, but the table size.  For any Toroidal bigger than 3x3, the tables are too big to create, and too big to store.  If we could calculate the distances quickly and without storing them, we'd be able to solve larger Toroidals.

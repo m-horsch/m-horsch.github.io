@@ -19,6 +19,7 @@ img
 }
 </style>
 
+Revised: 2026-08-12
 
 ### Abstract
 This article describes a modification of the Total Manhattan Distance (TMD) estimate,
@@ -97,21 +98,19 @@ Looking at this table a little more closely, we can see that each row is slightl
 As in the previous article, I used the three scaling variations for TMD to estimate the true distance, using a greedy search.  This time, I only applied the version of greedy search that prevents cycles.  The results are included in the table below, which also 
 shows the results from previous experiments, for context.
 
-|                          | Number Solved | Average Time | MinL |   AveL  |  MaxL |
-|:---------------------------|--------------:|-----------:|-----:|--------:|------:|
-| [Simple IDS](/solver/IDS_A.html)     |  62 | *322s*     |   4  |   5.4   |   6   |
-| [Enhanced IDS](/solver/IDS_B.html)   | 100 |   12.6s    |   4  | **6.1** | **8** |
-| [Look-up Table](/solver/LUT.html)    | 100 |    0.0001s |   4  | **6.1** | **8** |
-| [Distance Table](/solver/DIST.html)  | 100 |    0.0005s |   4  | **6.1** | **8** |
-| [MTC (no cycles)](/solver/MTC.html)  | 100 |    0.089s  |  16  | 256.0   | 942   |
-| [TMD (no cycles)](/solver/TMD.html)  | 100 |    0.082s  |   6  | 246.2   | 738   |
-| TMD Simple Division (no cycles)      | 100 |    0.084s  |   6  | 246.2   | 738   |
-| TMD Rounding Down (no cycles)        | 100 |    0.014s  |  10  |  97.5   | 293   |
-| TMD Rounding Up (no cycles)          | 100 |    0.016s  |   5  |  92.2   | 358   |
+|                |  3x3 Number Solved  |  3x3 Average Time  | MinL |  AveL   | MaxL  |
+|:---------------|--------------------:|-------------------:|-----:|--------:|------:|
+| [Simple IDS](IDS_A.)    | 199 |   47.1      |   2  |   5.8   |   7   |
+| [Enhanced IDS](IDS_B)   | 250 |    5.736    |   2  | **6.1** | **8** |
+| [Look-up Table](LUT)    | 250 |    0.00002  |   2  | **6.1** | **8** |
+| [Distance Table](DIST)  | 250 |    0.0002   |   2  | **6.1** | **8** |
+| [MTC (no cycles)](MTC)  | 250 |    0.046    |   2  | 202.0   | 915   |
+| [TMD (no cycles)](TMD)  | 250 |    0.053    |   2  | 237.8   | 771   |
+| TMD Floor (no cycles)   | 250 |    0.015    |   2  | 124.5   | 401   |
+| TMD Ceil (no cycles)    | 250 |    0.008    |   2  |  84.5   | 428   |
 
-We can observe that the results from TMD with Simple Division are identical to the original version of TMD (with a slight variation in the average time, due to random effects).  This is no surprise, since simple division doesn't affect relative orderings.
-However, when division is Rounded Down to the closest whole number, the results are in general, much better, compared to the original TMD results.  The average time is reduced, the average solution length is much smaller.  Even the maximum solution length is smaller.
-Likewise, when we use division and rounding up, the results are similar.  
+We can observe that when division is rounded down ("Floor") to the closest whole number, the results are in general, much better, compared to the original TMD results.  The average time is reduced, the average solution length is much smaller.  Even the maximum solution length is smaller.
+Likewise, when we use division and rounding up ("Ceil"), the results are similar. 
 
 This data suggests that rounding up seems slightly better than rounding down, and the confusion matrix seems to support this finding.  I'm not sure data is conclusive.  
 

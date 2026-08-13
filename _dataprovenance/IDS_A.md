@@ -14,23 +14,21 @@ table
 }
 </style>
 
+Revised: 2026-08-06
+
 ### Cross-references
   * [Iterative Deepening Search](/solver/IDS_A.html)
 
 ### Input Data
-  * `Data/Provenance/Common_Inputs/3x3_m500.txt`
+  * `Data/Provenance/Common_Inputs/3x3_N250_K50.txt`
+  * $$N=250, K=50$$, no cycle checking
   
 ### Solver configuration
-  * `Data/Provenance/SimpleIDS/SimpleIDS.py`
+  * `Data/Provenance/SimpleIDS/SimpleIDS.sh`
 
 ### Output data
-  * `Data/Provenance/SimpleIDS/2023_08_31_3x3_m500_IDS_k100.txt`
+  * `Data/Provenance/SimpleIDS/2026_08_05_IDS_Basic_3x3_N250_K50.txt`
 
-### Scripts for tabulation
-  * Incomplete
-
-### Tables and figures used
-  * Incomplete
-
-### Appendix
-  * Incomplete
+### Notes:
+  * Python version: 3.13.13
+  * Original data reported slightly slower times, based on a smaller dataset, and earlier version of Python,

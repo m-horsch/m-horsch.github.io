@@ -13,8 +13,10 @@ table
 }
 </style>
 
+Revised: 2026-08-06
+
 ### Abstract
-This article describes the application of a look-up table (LUT) to solve Toroidal puzzles of size 3x3 and smaller.  The table stores the best move for each configuration of tiles, assuming a specific goal state.  The tables are relatively small, and can easily fit into main memory for most modern personal computing devices.  A simple traversal algorithm using this table can solve randomly scrambled 3x3 Toroidal puzzles with an average time of about 0.1 milliseconds.  In practice, this technique is limited in application, as the size of such tables for Toroidals larger than 3x3 is prohibitively large.
+This article describes the application of a look-up table (LUT) to solve Toroidal puzzles of size 3x3 and smaller.  The table stores the best move for each configuration of tiles, assuming a specific goal state.  The tables are relatively small, and can easily fit into main memory for most modern personal computing devices.  A simple traversal algorithm using this table can solve randomly scrambled 3x3 Toroidal puzzles with an average time of about  0.00002 milliseconds.  In practice, this technique is limited in application, as the size of such tables for Toroidals larger than 3x3 is prohibitively large.
 
 ### Details
 In a previous article, [I presented the idea of a state space](/solver/StateSpace.html).  I said that any computer program to solve Toroidals has to navigate the state space.  This is quite a literal statement: A solution to a Toroidal is a path from the start state to the goal state, using the transitions allowed in the state space diagram.  A path is the answer to the question "Which moves do we need to make to get from the start state to the goal state?"  The state space is tells us which moves are possible.
@@ -75,9 +77,9 @@ In this look-up table, every state has exactly one prescribed move, so solving a
 
 |               | 3x3 Average Time  |
 |:------------------------------------|-----------:|
-| [Simple IDS](/solver/IDS_A.html)    |   *322s*   |
-| [Enhanced IDS](/solver/IDS_B.html)  |   12.6s    |
-| Look-up Table                       |   0.0001s  |
+| [Simple IDS](/solver/IDS_A.html)    |  47.1      |
+| [Enhanced IDS](/solver/IDS_B.html)  |   5.736    |
+| Look-up Table                       |   0.00002   |
 
 It takes some time to build the look-up table, but once the table is built, solving a 3x3 Toroidal takes almost no time at all.  The average time reported above does not include the time to build the table, of course.  The table is stored in a file, which the solver has to read, and this takes a few hundred milliseconds; this time is also not included in the average.
 

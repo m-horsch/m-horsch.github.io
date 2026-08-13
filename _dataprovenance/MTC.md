@@ -13,25 +13,25 @@ table
 }
 </style>
 
+Revised: 2026-08-12
+
 ### Cross-references
 This document describes the provenance of the data presented in the following article:
   * [Estimating distances: Misplaced Tile Count](/solver/MTC.html)
 
 ### Input Data
-  * `Python/DistanceEstimates/DIST_3x3.txt`
+  * `Data/Provenance/Common_Inputs/3x3_N250_K50.txt`
+  * $$N=250, K=50$$, no cycle checking    
 
 ### Solver configuration
-  * `Data/Provenance/DistanceEstimates/Greedy.py`
+  * `Data/Provenance/DistanceEstimates/Greedy.sh Basic MTC`
 
 ### Output data
   * `Data/Provenance/DistanceEstimates/2025_02_25_hval_tables.txt`  
-  * `Data/Provenance/DistanceEstimates/2025_11_27_MTC_taboo.txt`
+  * `Data/Provenance/DistanceEstimates/2026-08-12_Greedy_MTC_Basic_3x3_N250_K50.txt`
 
-### Scripts for tabulation
-  * Incomplete
+### Notes:
+  * Python version: 3.13.13
+  * Original data reported slightly slower times, based on a smaller dataset, and earlier version of Python.
+  
 
-### Tables and figures used
-  * Incomplete
-
-### Appendix
-  * Incomplete

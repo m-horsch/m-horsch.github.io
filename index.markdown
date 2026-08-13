@@ -98,7 +98,7 @@ Short articles about technical matters and results, presented in a way that can 
 <OL>
 {% for xdoc in site.technical %}
   <li>
-      {% if xdoc.url == newest.url %}
+      {% if xdoc.date == newest.date %}
         <span class="badge-new">Newest</span>
       {% endif %}
     <a href="{{ xdoc.url }}">
@@ -108,21 +108,6 @@ Short articles about technical matters and results, presented in a way that can 
 {% endfor %}
 </OL>
 
-# Assorted Commentary
-
-Various short articles and footnotes.  Some of these might be a bit technical.
-<OL>
-{% for cdoc in site.commentary %}
-  <li>
-      {% if cdoc.url == newest.url %}
-        <span class="badge-new">Newest</span>
-      {% endif %}
-    <a href="{{ cdoc.url }}">
-      {{ cdoc.title }}
-    </a>
-  </li>
-{% endfor %}
-</OL>
 
 # My To-Do List
 
@@ -130,7 +115,7 @@ What's on the agenda.  The order reflects when the topics were added, but not ne
 <OL>
 {% for adoc in site.agenda %}
   <li>
-      {% if adoc.url == newest.url %}
+      {% if adoc.date == newest.date %}
         <span class="badge-new">Newest</span>
       {% endif %}
     <a href="{{ adoc.url }}">

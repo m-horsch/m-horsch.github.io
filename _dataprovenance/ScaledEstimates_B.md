@@ -1,7 +1,6 @@
 ---
 layout: post
 title:  "Data provenance: title: Preventing useless sequences for greedy search"
-"
 date:   2025-12-21
 usemathjax: true
 ---

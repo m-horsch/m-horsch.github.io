@@ -49,7 +49,7 @@ the speed of each move with the slider. The tiles that rotate are
 labelled A, B, and C, and after every swing, they've swapped positions
 in the clockwise direction.
 
-[Click here to see the demonstration]({{ site.toroidalreplay_url | append:  "?mode=Swinging.json"}}){:target="_blank"}.
+[Click here to see the demonstration]({{ site.toroidalreplay_url | append:  "?mode=Swinging"}}){:target="_blank"}.
 
 **Long Swings.** All of the examples presented have swings that move a
 row or column exactly one step in some direction.  But as long as we're

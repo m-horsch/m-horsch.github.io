@@ -54,8 +54,8 @@ Note: If you see 1SF in a 3x3 grid (or any grid where both dimensions are odd), 
 
 In words:  Start by moving tile A out of the way with `R4 D1 R4 U1`.   Then do `R4` to prepare tile B, and then `R4 D1 R4 U1` to position A beside B.  
 
-1. [Here's a demonstration]({{ site.toroidalreplay_url | append:  "?mode=1SF.json" }}){:target="_blank"}.
-2. [Here's the playable Toroidal to give it a try yourself]({{ site.toroidal_url | append:  "?mode=training/1SF.json" }}){:target="_blank"}.
+1. [Here's a demonstration]({{ site.toroidalreplay_url | append:  "?mode=1SFReplay" }}){:target="_blank"}.
+2. [Here's the playable Toroidal to give it a try yourself]({{ site.toroidal_url | append:  "?mode=1SF" }}){:target="_blank"}.
 
 I broke the longer sequence into 3 smaller sub-sequences to explain it.  There is a sequence of 4 moves that appears twice: `R4 D1 R4 U1`.  This contains a partial or incomplete swing.  I am not sure if this is an important observation.  If the swings were complete, I would be more confident in saying "swing is all you need."  On the other hand, it might be better to treat the sequence `R4 D1 R4 U1` as a distinct kind of sequence, with one axis moving back and forth and the other moving one direction only.  
 

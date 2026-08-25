@@ -28,7 +28,7 @@ and [Enhanced IDS](/solver/IDS_B.html).
 Neither one of these is very effective.
 Let's look a little deeper into the nature of Toroidal problems, to see where the trouble is.
 
-**The smallest Toroidals.** Let's start with the smallest size, 2x2 Toroidals. [Here's an example for you to play with.]({{ site.toroidal_url | append:  "?mode=training/2x2.json"}}){:target="_blank"} 
+**The smallest Toroidals.** Let's start with the smallest size, 2x2 Toroidals. [Here's an example for you to play with.]({{ site.toroidal_url | append:  "?mode=2x2"}}){:target="_blank"} 
 
 A 2x2 Toroidal has 4 tiles, which can be arranged in $$4! = 24$$ ways.
 Every 2x2 Toroidal starting configuration will be one of these, and the goal is also one of these.  With 2 rows and 2 columns, there are 8 basic possible moves that can be made.  However, because the 2x2 grid is so small, exactly half of the moves are redundant. 

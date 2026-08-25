@@ -48,7 +48,7 @@ Finally, we make a TLC move, pushing the middle row back into place.
 ![Repairing the TLC](/TImages/Stars3x3_Repair_TLC.png) 
 
 
-**You try it.** Click on [the link to practice this move]({{ site.toroidal_url | append: "?mode=training/TLC_practice.json"}}){:target="_blank"}.  The example is exactly the same as the one above, except I substituted a plain blue T-block for one of the image tiles.  If you make a mistake, use the Undo button, or the Reset button.  In the description above, I moved the tile T out of the way by moving it down.  Try moving it up, and see how it changes things!
+**You try it.** Click on [the link to practice this move]({{ site.toroidal_url | append: "?mode=TLC_practice"}}){:target="_blank"}.  The example is exactly the same as the one above, except I substituted a plain blue T-block for one of the image tiles.  If you make a mistake, use the Undo button, or the Reset button.  In the description above, I moved the tile T out of the way by moving it down.  Try moving it up, and see how it changes things!
 
 The example above can be summarized by a sequence of steps, as follows:
 
@@ -62,7 +62,7 @@ The example above can be summarized by a sequence of steps, as follows:
 ### Moving a tile from the gutter row to the TLC using a TLC column move
 This is exactly the same as the above description, except rows and columns are exchanged.
 
-**You try it.** Click on [the link to practice this move]({{ site.toroidal_url | append: "?mode=training/TLC_practiceB.json"}}){:target="_blank"}.  This time the T block is on the gutter row.  And it's not in the way, so we can save a step!
+**You try it.** Click on [the link to practice this move]({{ site.toroidal_url | append: "?mode=TLC_practiceC"}}){:target="_blank"}.  This time the T block is on the gutter row.  And it's not in the way, so we can save a step!
 
 At the risk of boring the reader, I will describe the sequence of steps.  
 
@@ -92,8 +92,8 @@ If the TLC is complete, all the tiles for the gutter are already in the gutter. 
 You may have to move a tile from one position in the gutter row (or gutter column) to another position in the gutter row (or gutter column); do this using the gutter column (or gutter row).  Remember, to solve the gutter row and column, only move the gutter row and column.
 
 **You try it.**  Here are two examples of the 3x3 Toroidal with scrambled gutters.  It turns out that on a 3x3, the gutters are almost always easy to solve.  
-1. [Gutter practice 1]({{ site.toroidal_url | append:  "?mode=training/Gutter_practice.json" }}){:target="_blank"}.  
-1. [Gutter practice 2]({{ site.toroidal_url | append:  "?mode=training/Gutter_practiceB.json" }}){:target="_blank"}.  
+1. [Gutter practice 1]({{ site.toroidal_url | append:  "?mode=Gutter_practice" }}){:target="_blank"}.  
+1. [Gutter practice 2]({{ site.toroidal_url | append:  "?mode=Gutter_practiceB" }}){:target="_blank"}.  
 
 ## Looking forward
 1. If I've given you enough direction already, you can leave this tutorial and try your hand at some of the [other Toroidal puzzles I've created.]({{ site.toroidal_url }})

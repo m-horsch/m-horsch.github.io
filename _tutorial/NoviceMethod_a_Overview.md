@@ -41,9 +41,9 @@ Once the TLC is complete, all the tiles for the gutter are already in the gutter
 
 **You try it.**
 For some readers, I may have already provided enough information to get you solving 3x3 Toroidals.  So I will end the brief overview here with a couple of tutorial examples for you to try on your own.
-1. An example to [move one tile from the gutter to the TLC.]({{ site.toroidal_url | append: "?mode=training/TLC_practice.json"}}){:target="_blank"}
-2. An example to [solve the TLC only.]({{ site.toroidal_url | append: "?mode=training/TLC_practiceB.json"}}){:target="_blank"}
-3. An example to [solve the gutter only.]({{ site.toroidal_url | append:  "?mode=training/Gutter_practice.json" }}){:target="_blank"} 
+1. An example to [move one tile from the gutter to the TLC.]({{ site.toroidal_url | append: "?mode=TLC_practice"}}){:target="_blank"}
+2. An example to [solve the TLC only.]({{ site.toroidal_url | append: "?mode=TLC_practiceB"}}){:target="_blank"}
+3. An example to [solve the gutter only.]({{ site.toroidal_url | append:  "?mode=Gutter_practice" }}){:target="_blank"} 
 
 ## Looking forward
 1. If I've given you enough direction already, you can leave this tutorial and try your hand at some of the [other Toroidal puzzles I've created.]({{ site.toroidal_url }})

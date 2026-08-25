@@ -31,6 +31,8 @@ url: "https://m-horsch.github.io/" # the base hostname & protocol for your site,
 # github_username:  m-horsch
 toroidal_url: "https://m-horsch.github.io/PlayToroidal/Toroidal.html"
 toroidalreplay_url: "https://m-horsch.github.io/PlayToroidal/ToroidalReplay.html"
+# toroidal_url: "http://localhost:8000/Toroidal.html"
+# toroidalreplay_url: "http://localhost:8000/ToroidalReplay.html"
 
 
 # Build settings

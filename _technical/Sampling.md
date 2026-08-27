@@ -33,7 +33,7 @@ Sometimes, the default is not appropriate, for example, in the case of block puz
 ![Numbered Image Configuration](/TImages/Cross3x3Numbered.png)
 
 ### Random walks in the state space  
-Once the goal configuration is stablished, either by default, or by design, a sequence of random moves are applied to the goal configuration, resulting in a scrambled puzzle.  In the language of mathematics, this is called a random walk.  When we talk about solving, we always start with the scrambled state, and work towards the goal state.  When we talk about scrambling, we start with the goal state, and randomly walk away from it, to some (hopefully unpredictable) scrambled state.  
+Once the goal configuration is established, either by default, or by design, a sequence of random moves are applied to the goal configuration, resulting in a scrambled puzzle.  In the language of mathematics, this is called a random walk.  When we talk about solving, we always start with the scrambled state, and work towards the goal state.  When we talk about scrambling, we start with the goal state, and randomly walk away from it, to some (hopefully unpredictable) scrambled state.  
 
 An important aspect of the random walk is the number of steps you take.  I've been using the letter $$K$$ to represent the number of steps.  If $$K$$ is very small, a random walk can never get too far from the goal state.  For an interesting puzzle, $$K$$ has to be big enough that the path back to the goal state is not obvious.  For my work in evaluating the performance of Toroidal solvers, $$K$$ has to be big enough that the resulting scrambled state looks like it was chosen at random from the possible states.  
 

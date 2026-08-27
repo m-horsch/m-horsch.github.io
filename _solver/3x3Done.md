@@ -33,4 +33,4 @@ While it is possible that a better distance estimate might be waiting to be disc
 ### Looking forward.
 I've already mentioned that some of the techniques that I covered so far cannot be feasibly applied to Toroidals larger than  3x3.  These include methods based on Iterative Deepening Search (both [Simple](IDA_A) and [Enhanced](IDS_B)), as well as table-based methods ([LUT](LUT) and [DIST](DIST)).  A 4x4 Toroidal has far too many possible states to try looking through them all, much less store a table with all of them.  So I will say no more about them.
 
-In the next article, I'll report on using greedy search, as well as A\* Search on these [larger Toroidals](FourByFour). 
+In the next article, I'll report on using greedy search, as well as A\* Search on these [larger Toroidals](4x4Prelim). 
